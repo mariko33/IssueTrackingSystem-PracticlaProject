@@ -4,7 +4,7 @@ app.factory('userService',function($http,baseServiceUrl,authService){
         createNewAd:function(adData,success,error){
             var request={
                 method:'POST',
-                url:baseServiceUrl+'/api/Account/Register',
+                url:baseServiceUrl+'api/Account/Register',
                 headers:authService.getAuthHeaders(),
                 data:adData
             };

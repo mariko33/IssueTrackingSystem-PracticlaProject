@@ -12,16 +12,22 @@ config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/view1'});
 }]);*/
 
-app.constant('baseUrl','http://softuni-issue-tracker.azurewebsites.net');
+app.constant('baseServiceUrl','http://softuni-issue-tracker.azurewebsites.net/');
+
 app.config(function($routeProvider){
-  $routeProvider.when('/',{
+  /*$routeProvider.when('/',{
     templateUrl:'templates/home.html',
     controller:'HomeController'
-  });
+  });*/
 
   $routeProvider.when('/register',{
     templateUrl:'templates/register.html',
     controller:'RegisterController'
+  });
+
+  $routeProvider.when('/login',{
+    templateUrl:'templates/login.html',
+    controller:'LoginController'
   });
 
 })
