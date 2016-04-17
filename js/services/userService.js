@@ -23,7 +23,29 @@ app.factory('userService',function($http,baseServiceUrl,authService){
                 success(data);
             }).error(errorr);
 
+        },
+
+        getAllUsers:function(success,error){
+            var request={
+                method:'GET',
+                url:baseServiceUrl+'users/',
+                headers:authService.getAuthHeaders()
+            };
+
+            $http(request).success(function(data){
+                sessionStorage['allUsers']=JSON.stringify(data);
+                success(data);
+            }).error(error);
         }
+
+       /* isAdmin : function() {
+            var currentUserMe = JSON.parse(sessionStorage['currentUserMe']);
+            if(currentUserMe){
+                 console.log(currentUserMe.isAdmin)
+                 return currentUserMe.isAdmin;
+            }
+        }
+*/
     };
 
 

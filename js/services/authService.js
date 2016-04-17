@@ -34,7 +34,7 @@ app.factory('authService',
                         var request = {
                             method: 'POST',
                             url: baseServiceUrl + 'api/Account/Register',
-                            data: data,
+                            data: data
                             /*headers: { 'Content-Type': 'application/json' }*/
 
                         };
@@ -63,7 +63,7 @@ app.factory('authService',
                         }
                     },
 
-                    isAnonymous : function() {
+                    isAsignee : function() {
                         return sessionStorage['currentUser'] == undefined;
                     },
 
@@ -71,17 +71,21 @@ app.factory('authService',
                         return sessionStorage['currentUser'] != undefined;
                     },
 
-                    isNormalUser : function() {
+                    isProjectLeader : function() {
                         var currentUser = this.getCurrentUser();
                         return (currentUser != undefined) && (!currentUser.isAdmin);
                     },
 
                     isAdmin : function() {
-                        var currentUser = this.getCurrentUser();
-                        return (currentUser != undefined) && (currentUser.isAdmin);
+                    var currentUserMe = JSON.parse(sessionStorage['currentUserMe']);
+                        if(currentUserMe){
+                       console.log(currentUserMe.isAdmin)
+                            return currentUserMe.isAdmin;
+                      }
                     },
 
-                    getAuthHeaders : function() {
+
+        getAuthHeaders : function() {
                         var headers = {};
                         var currentUser = this.getCurrentUser();
                         if(currentUser) {

@@ -21,7 +21,8 @@
 		<thead>
 		<tr>
 			<td><button href="#" ng-click="hideIssues()">Issues</button></td>
-			<td><button href="#" ng-click="hideProjects()">Project</button></td>
+			<td><button ng-show="isAdmin", ng-click="hideProjects()">List Project</button></td>
+			<td><button ng-show="isAdmin", ng-click="add()">Add Project</button></td>
 		</tr>
 		</thead>
 </table>
@@ -40,9 +41,12 @@
 		<tr ng-repeat="issue in issues" >
 			<td>{{issue.Title}}</td>
 			<td>{{issue.Project.Name}}</td>
+			<td>{{issue.Project.Id}}</td>
 			<td>{{issue.Description}}</td>
 			<td>{{issue.IssueKey}}</td>
 			<td>{{issue.DueDate}}</td>
+			<td><button ng-click="addIssue(issue.Project.Id)">Add Issue</button></td>
+			<td><button ng-click="editIssue()">Edit Issue</button></td>
 		</tr>
 
 	</tbody >

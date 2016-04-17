@@ -14,6 +14,9 @@ app.controller('LoginController',
                     userService.getCurrentUser(function(success){
                         console.log("current User")
                     },function(errorr){});
+                    userService.getAllUsers(function(success){
+                        console.log("All Users")
+                    },function (errorr){});
                     console.log("login");
                     $location.path('/dashboard');
                 },

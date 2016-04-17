@@ -32,6 +32,19 @@ app.config(function($routeProvider){
   $routeProvider.when('/dashboard',{
     templateUrl:'templates/dashboard.html',
     controller:'DashboardUserController'
-  })
+  });
+
+  $routeProvider.when('/projects/add',{
+    templateUrl:'templates/Add-new-project.html',
+    controller:'AddProjectController'
+  });
+  $routeProvider.when('/issue/add',{
+    templateUrl:'templates/Add-new-issue.html',
+    controller:'AddIssueController'
+  });
+  $routeProvider.when('/issue/edit',{
+    templateUrl:'templates/edit-issue.html',
+    controller:'EditIssueController'
+  });
 
 })

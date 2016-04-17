@@ -38,12 +38,21 @@ app.factory('issueService',function($http,$q, baseServiceUrl, authService){
             };
             //console.log(authService.getAuthHeaders());
             $http(request).then(function (responce) {
-                deferred.resolve(responce)
+                deferred.resolve(responce);
+                sessionStorage['allProjects']=JSON.stringify(responce);
                 console.log(responce);
             },function(err){
 
             });
             return deferred.promise;
+        },
+
+        allUsersObj:function(){
+            var allUsers=sessionStorage['allUsers'];
+          if(allUsers){
+              allUsers=JSON.parse(allUsers);
+              return allUsers;
+          }
         },
 
 
@@ -54,6 +63,17 @@ app.factory('issueService',function($http,$q, baseServiceUrl, authService){
                 console.log(myIssues);
                 return myIssues;
             }
+        },
+
+        addIssue:function(data, success,error){
+            var request={
+                method:"POST",
+                url:baseServiceUrl+'issues/',
+                headers:authService.getAuthHeaders(),
+                data:data
+            };
+            $http(request).success(success).error(error);
+
         }
 
 

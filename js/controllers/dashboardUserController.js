@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('DashboardUserController',function($scope,$location, $q,authService,issueService){
+app.controller('DashboardUserController',function($scope,$location, $q,authService,issueService,userService){
     $scope.addParams={
         'orderBy':'DueDate',
         'pageSize':'10',
@@ -38,6 +38,20 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
     $scope.isHideProjects=false;
     $scope.hideProjects=function(){
         $scope.isHideProjects=!$scope.isHideProjects;
+    }
+
+    $scope.isAdmin=authService.isAdmin();
+    $scope.add=function(){
+        $location.path('/projects/add');
+    }
+    $scope.addIssue=function(id){
+        $scope.currentProjectId=id;
+        console.log(id);
+        $location.path('/issue/add');
+
+    }
+    $scope.editIssue=function(){
+        $location.path('/issue/edit');
     }
 
 
