@@ -29,5 +29,9 @@ app.config(function($routeProvider){
     templateUrl:'templates/login.html',
     controller:'LoginController'
   });
+  $routeProvider.when('/dashboard',{
+    templateUrl:'templates/dashboard.html',
+    controller:'DashboardUserController'
+  })
 
 })

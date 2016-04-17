@@ -18,11 +18,13 @@ app.controller('RegisterController',
         $scope.register = function(userData) {
             authService.register(userData,
                 function success() {
-                    notifyService.showInfo("Registered successfully");
-                    $location.path('/');
+                   // notifyService.showInfo("Registered successfully");
+                    console.log("success")
+                    $location.path('/login');
                 },
                 function error(err) {
                     notifyService.showError("Failed to register", err);
+                    $location.path('/');
                 })
             console.log(userData);
         }

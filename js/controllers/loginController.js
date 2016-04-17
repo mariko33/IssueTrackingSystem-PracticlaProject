@@ -2,19 +2,24 @@
 
 
 app.controller('LoginController',
-    function ($scope, $rootScope, $location, authService, notifyService) {
+    function ($scope, $rootScope, $location, authService, userService, notifyService) {
         $scope.login = function(userData) {
             authService.login(userData,
                 function success() {
-                    notifyService.showInfo("Login Successful");
+                   // notifyService.showInfo("Login Successful");
                    /* if(authService.getCurrentUser().isAdmin)
                         $location.path('/admin/home');
                     else
                         $location.path('/user/home/');*/
+                    userService.getCurrentUser(function(success){
+                        console.log("current User")
+                    },function(errorr){});
                     console.log("login");
+                    $location.path('/dashboard');
                 },
                 function error(err) {
-                    notifyService.showError("Failed to login", err);
+                   // notifyService.showError("Failed to login", err);
+                    console.log(err);
                 });
         };
     }

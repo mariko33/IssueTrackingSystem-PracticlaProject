@@ -10,7 +10,28 @@ app.factory('userService',function($http,baseServiceUrl,authService){
             };
             console.log(authService.getAuthHeaders());
             $http(request).success(success).error(error);
+        },
+
+        getCurrentUser:function(success,errorr){
+            var request={
+                method:'GET',
+                url:baseServiceUrl+'users/me',
+                headers:authService.getAuthHeaders()
+            };
+            $http(request).success(function(data){
+                sessionStorage['currentUserMe']=JSON.stringify(data);
+                success(data);
+            }).error(errorr);
+
         }
-    }
+    };
+
 
 })
+
+/*
+$http(request).success(function(data) {
+    sessionStorage['currentUser'] = JSON.stringify(data);
+    success(data);
+    console.log(data);
+}).error(error);*/
