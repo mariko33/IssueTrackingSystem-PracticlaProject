@@ -52,8 +52,11 @@ app.factory('authService',
                     },
 
 
+
                     logout: function() {
-                        delete sessionStorage['currentUser'];
+                       // delete sessionStorage['currentUser'];
+                        sessionStorage.clear();
+
                     },
 
                     getCurrentUser : function() {
@@ -92,7 +95,19 @@ app.factory('authService',
                             headers['Authorization'] = 'Bearer ' + currentUser.access_token;
                         }
                         return headers;
+                    },
+
+                    getToken:function(){
+                        var currentUser = this.getCurrentUser();
+                        if(currentUser) {
+                        return   'Bearer ' + currentUser.access_token;
+                        }
+
                     }
+
+
+
                 }
+
     }
 );

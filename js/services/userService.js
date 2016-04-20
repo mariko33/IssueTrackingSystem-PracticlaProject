@@ -36,16 +36,37 @@ app.factory('userService',function($http,baseServiceUrl,authService){
                 sessionStorage['allUsers']=JSON.stringify(data);
                 success(data);
             }).error(error);
-        }
+        },
 
-       /* isAdmin : function() {
-            var currentUserMe = JSON.parse(sessionStorage['currentUserMe']);
-            if(currentUserMe){
-                 console.log(currentUserMe.isAdmin)
-                 return currentUserMe.isAdmin;
-            }
-        }
-*/
+        changeUserPassword:function(data,success,error){
+            var request={
+                method:'POST',
+                url:baseServiceUrl+'api/Account/ChangePassword',
+                data:data,
+                headers:authService.getAuthHeaders()
+            };
+
+            $http(request).success(function(data){
+                success(data);
+                console.log(data);
+                console.log('success service')
+            }).error(error);
+
+        },
+        setPassword:function(data,success,error){
+            var request={
+                method:'POST',
+                url:baseServiceUrl+'api/Account/SetPassword',
+                data:data,
+                headers:authService.getAuthHeaders()
+            };
+            $http(request).success(function(data){
+                success(data);
+            }).error(error);
+
+        },
+
+
     };
 
 

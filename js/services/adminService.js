@@ -5,16 +5,18 @@ app.factory('adminService',
         return{
 
             addProject: function(data, success, error) {
-            /*var loginData = 'Name=' + projectData.name + '&Description=' + projectData.description +
-                'ProjectKey='+projectData.projectKey+'labels[0].Name='+projectData.labelsName+'priorities[0].Name='+
-                projectData.prioritiesName+'LeadId='+projectData.leadId;*/
+
 
             var request = {
                 method: 'POST',
-                url: baseServiceUrl + 'projects/',
-                headers:authService.getAuthHeaders(),
+                url: baseServiceUrl + 'projects',
+                //headers:authService.getAuthHeaders(),
+                headers:{
+                    'Authorization':authService.getToken(),
+                    'Content-Type':'application/json'
+                },
                 data: data
-                //headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+
             };
 
             //return $http(request);

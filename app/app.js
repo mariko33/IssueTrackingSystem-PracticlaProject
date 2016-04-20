@@ -47,4 +47,9 @@ app.config(function($routeProvider){
     controller:'EditIssueController'
   });
 
+  $routeProvider.when('/changePassword',{
+    templateUrl:'templates/changePassword.html',
+    controller:'ChangeUserPassword'
+  })
+
 })

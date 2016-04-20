@@ -29,7 +29,7 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
 
     $scope.getAllProject=issueService.getAllProject().then(function(response){
         $scope.allProjects=response.data;
-    })
+    });
 
     $scope.isHideIssues=false;
     $scope.hideIssues=function(){
@@ -38,20 +38,30 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
     $scope.isHideProjects=false;
     $scope.hideProjects=function(){
         $scope.isHideProjects=!$scope.isHideProjects;
-    }
+    };
 
     $scope.isAdmin=authService.isAdmin();
     $scope.add=function(){
         $location.path('/projects/add');
-    }
+    };
     $scope.addIssue=function(id){
         $scope.currentProjectId=id;
         console.log(id);
         $location.path('/issue/add');
 
-    }
+    };
     $scope.editIssue=function(){
         $location.path('/issue/edit');
+    };
+
+    $scope.changePassword=function(){
+        $location.path('/changePassword');
+    };
+
+    $scope.logout=function(){
+        $location.path('/')
+        authService.logout();
+
     }
 
 
