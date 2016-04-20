@@ -1,5 +1,5 @@
 <div class="box">
-         <h2>Register</h2>
+         <h2>Login</h2>
          <p>
              <label for="email">E-mail:</label>
              <input type="text" id="email" ng-model="userData.email" required="required" />
@@ -10,10 +10,10 @@
          </p>
     <p>
         <label for="password-confirm">Confirm Password:</label>
-        <input type="password" id="password-confirm" ng-model="userData.confirmPassword" required="required"/>
+        <input type="password" id="password-confirm" ng-model="userData.password-confirm" required="required"/>
     </p>
          <p>
-             <button ng-click="register(userData)" class="button">Register</button>
+             <a ng-click="register(userData)" class="button">Register</a>
              <!--<a href="#/register" class="link">Register</a>-->
          <p>
      </div>
