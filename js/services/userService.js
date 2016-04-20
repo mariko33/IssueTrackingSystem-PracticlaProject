@@ -67,8 +67,7 @@ app.factory('userService',function($http,baseServiceUrl,authService){
         },
 
 
-    };
-
+    }
 
 })
 
