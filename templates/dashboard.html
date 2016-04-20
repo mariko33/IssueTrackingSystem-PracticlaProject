@@ -20,9 +20,9 @@
 	<table class="table table-striped">
 		<thead>
 		<tr>
-			<td><button href="#" ng-click="hideIssues()">Issues</button></td>
-			<td><button ng-show="isAdmin", ng-click="hideProjects()">List Project</button></td>
-			<td><button ng-show="isAdmin", ng-click="add()">Add Project</button></td>
+			<!--<td><button href="#" ng-click="hideIssues()">Issues</button></td>-->
+			<td><button  ng-show="isAdmin", ng-click="hideProjects()">List Project</button></td>
+			<td><button  ng-show="isAdmin", ng-click="add()">Add Project</button></td>
 			<td><button  ng-click="changePassword()">Change User Password</button></td>
 			<td><button  ng-click="logout()">Log out</button></td>
 
@@ -30,7 +30,10 @@
 		</thead>
 </table>
 
-		<table class="table table-striped" ng-show="isHideIssues">
+		<!--<table class="table table-striped" ng-show="isHideIssues">-->
+	<div>
+	<div class="col-md-6">
+	<table class="table table-striped">
 	<thead>
 		<tr>
 			<td>Issues</td>
@@ -48,13 +51,15 @@
 			<td>{{issue.Description}}</td>
 			<td>{{issue.IssueKey}}</td>
 			<td>{{issue.DueDate}}</td>
-			<td><button ng-click="addIssue(issue.Project.Id)">Add Issue</button></td>
-			<td><button ng-click="editIssue()">Edit Issue</button></td>
+			<!--<td><button ng-click="addIssue(issue.Project.Id)">Add Issue</button></td>
+			<td><button ng-click="editIssue()">Edit Issue</button></td>-->
 		</tr>
 
 	</tbody >
 			</table>
+	</div>
 
+	<div class="col-md-6">
 	<table class="table table-striped" ng-show="isHideProjects">
 		<thead>
 		<tr>
@@ -78,6 +83,9 @@
 
 		</tbody >
 		</table>
+	</div>
+	</div>
+
 		<!--<tr>
 			<td>Bad Request has no message describing the problem</td>
 			<td>SIT</td>

@@ -16,15 +16,19 @@ app.factory('issueService',function($http,$q, baseServiceUrl, authService){
             /*$http(request).success(function (data) {
                 sessionStorage['issueMe'] = JSON.stringify(data);
                 console.log(data);
-            }).error(error);*/
-
+            }).error(error);
+*/
             $http(request).then(function(data){
+                deferred.resolve(data);
+                console.log(data);
                 sessionStorage['issueMe'] = JSON.stringify(data);
                 console.log(sessionStorage['issueMe']);
 
             },function(){
 
             });
+
+
             return deferred.promise;
         },
 

@@ -1,5 +1,5 @@
 'use strict'
-app.factory('userService',function($http,baseServiceUrl,authService){
+app.factory('userService',function($http,$q,baseServiceUrl,authService){
     return{
         createNewAd:function(adData,success,error){
             var request={
@@ -13,15 +13,28 @@ app.factory('userService',function($http,baseServiceUrl,authService){
         },
 
         getCurrentUser:function(success,errorr){
+            var deferred = $q.defer();
             var request={
                 method:'GET',
                 url:baseServiceUrl+'users/me',
                 headers:authService.getAuthHeaders()
             };
-            $http(request).success(function(data){
+            /*$http(request).success(function(data){
                 sessionStorage['currentUserMe']=JSON.stringify(data);
                 success(data);
-            }).error(errorr);
+            }).error(errorr);*/
+            $http(request).then(function(data){
+                deferred.resolve(data);
+                console.log(data);
+                sessionStorage['currentUserMe'] = JSON.stringify(data);
+                console.log(sessionStorage['currentUserMe']);
+
+            },function(){
+
+            });
+
+
+            return deferred.promise;
 
         },
 

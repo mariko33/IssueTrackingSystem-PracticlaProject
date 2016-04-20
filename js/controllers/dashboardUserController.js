@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('DashboardUserController',function($scope,$location, $q,authService,issueService,userService){
+app.controller('DashboardUserController',function($scope,$location, $q,authService,$route, issueService,userService){
     $scope.addParams={
         'orderBy':'DueDate',
         'pageSize':'10',
@@ -13,34 +13,47 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
 
         })
     };
-    /*$scope.issueMe= function() {
-        var deferred=$q.defer();
-        issueService.getIssueMe($scope.addParams, function success(success) {
+//var param=$scope.addParams;
 
-            }.then(console.log($scope.myIssues = sessionStorage['issueMe'])),
-            function error(err) {
-                console.log(err)
-            });
-        return deferred.promise;
-    };*/
-    $scope.issueMe=issueService.getIssueMe($scope.addParams)
-        .then($scope.issues=issueService.myIssuesObj().data.Issues);
+    /*$scope.issueMe=issueService.getIssueMe($scope.addParams)
+        .then($scope.issues=issueService.myIssuesObj().Issues);
+*/
+
+    /*$scope.issueMe=issueService.getIssueMe($scope.addParams).then(function(responce){
+        $scope.issues=responce.data.Issues;
+        console.log(response);
+    });*/
+
+     $scope.issueMe=issueService.getIssueMe($scope.addParams).then(function(response){
+     $scope.issues=response.data.Issues;
+     console.log($scope.issues);
+     });
+
+
 
 
     $scope.getAllProject=issueService.getAllProject().then(function(response){
         $scope.allProjects=response.data;
+        console.log($scope.allProjects);
     });
 
-    $scope.isHideIssues=false;
-    $scope.hideIssues=function(){
+    //$scope.isHideIssues=false;
+    /*$scope.hideIssues=function(){
         $scope.isHideIssues=!$scope.isHideIssues;
-    };
+    };*/
     $scope.isHideProjects=false;
     $scope.hideProjects=function(){
         $scope.isHideProjects=!$scope.isHideProjects;
+
+
     };
 
-    $scope.isAdmin=authService.isAdmin();
+    $scope.isAdminStatus=userService.getCurrentUser().then(function(response){
+        console.log(response.data.isAdmin);
+        $scope.isAdmin=response.data.isAdmin;
+    },function(){});
+
+
     $scope.add=function(){
         $location.path('/projects/add');
     };
@@ -59,8 +72,8 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
     };
 
     $scope.logout=function(){
-        $location.path('/')
         authService.logout();
+        $location.path('/')
 
     }
 
