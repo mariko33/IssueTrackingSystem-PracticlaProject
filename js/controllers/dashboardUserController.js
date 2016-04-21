@@ -75,6 +75,9 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
         authService.logout();
         $location.path('/')
 
+    };
+    $scope.viewMyIssues=function(){
+        $location.path('/issues');
     }
 
 

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<body>
+<div class=jumbotron>
+    <h2 style="margin-top: 0"> Issue Page</h2>
+
+    <form>
+        <div class="form-group">
+
+            <select  class="form-control" ng-controller="DashboardUserController" ng-model="issue.Id">
+                <option ng-repeat="issue in issues">{{issue.Id}}</option>
+            </select>
+            <button class="btn btn-success" ng-click="getIssue()">Show issues by chosen Id</button>
+            <button  class="btn btn-success" ng-click="viewAnotherIssue()">Vew Another Issue</button>
+        </div>
+
+    <div class="form-group" ng-show="isHideIssue">
+        <div class="form-group">
+            <label for="issueInfoTitle">Title</label>
+            <input class="form-control" id="issueInfoTitle" ng-model="issueInfo.Title" value="{{issueInfo.Title}}" >
+        </div>
+        <div class="form-group">
+            <label for="issueInfoAuthor">Author</label>
+            <input class="form-control" id="issueInfoAuthor" ng-model="issueInfo.Author.Username" value="{{issueInfo.Author.Username}}" >
+        </div>
+        <div class="form-group">
+            <label for="issueInfoDueDate">Due Date</label>
+            <input type="text" class="form-control" id="issueInfoDueDate"  ng-model="issueInfo.DueDate" value="{{issueInfo.DueDate}}" >
+        </div>
+        <div class="form-group">
+            <label for="issueInfoAssignee">Assignee</label>
+            <input type="text" class="form-control" id="issueInfoAssignee" ng-model="issueInfo.Assignee.Id" value="{{issueInfo.Assignee.Id}}"  >
+            </input>
+        </div>
+        <div class="form-group">
+            <label for="issueInfoDescription">Description</label>
+            <input type="text" class="form-control" id="issueInfoDescription" ng-model="issueInfo.Description" value="{{issueInfo.Description}}"  >
+        </div>
+        <div class="form-group">
+            <label for="issueInfoIssueKey">Issue Key</label>
+            <input type="text" class="form-control" id="issueInfoIssueKey" ng-model="issueInfo.IssueKey" value="{{issueInfo.IssueKey}}">
+            <br>
+        </div>
+        <div class="form-group">
+            <label for="issueInfoProjectName">Project Name</label>
+            <input type="text" class="form-control" id="issueInfoProjectName" ng-model="issueInfo.Project.Name" value="{{issueInfo.Project.Name}}" >
+            <br>
+        </div>
+        <div class="form-group">
+            <label for="issueInfoProjectId">Project Id</label>
+            <input type="text" class="form-control" id="issueInfoProjectId" ng-model="issueInfo.Project.Id" value="{{issueInfo.Project.Id}}" >
+            <br>
+        </div>
+
+    </div>
+    </form>
+</div>
+</body>
+</html>

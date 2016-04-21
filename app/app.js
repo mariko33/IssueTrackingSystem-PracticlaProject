@@ -50,6 +50,10 @@ app.config(function($routeProvider){
   $routeProvider.when('/changePassword',{
     templateUrl:'templates/changePassword.html',
     controller:'ChangeUserPassword'
-  })
+  });
+  $routeProvider.when('/issues', {
+    templateUrl: 'templates/issuePage.html',
+    controller: 'IssueController'
+  });
 
 })

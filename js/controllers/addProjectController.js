@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('AddProjectController', function($scope,$location, adminService){
+app.controller('AddProjectController', function($scope, $location, adminService){
 
     $scope.projectData={};
     /*$scope.projectData.leabels=[{'Name':'Label1'},{'Name':'Label2'}];

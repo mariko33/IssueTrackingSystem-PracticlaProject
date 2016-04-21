@@ -21,6 +21,7 @@
 		<thead>
 		<tr>
 			<!--<td><button href="#" ng-click="hideIssues()">Issues</button></td>-->
+			<td><button  ng-click="viewMyIssues()">View issues</button></td>
 			<td><button  ng-show="isAdmin", ng-click="hideProjects()">List Project</button></td>
 			<td><button  ng-show="isAdmin", ng-click="add()">Add Project</button></td>
 			<td><button  ng-click="changePassword()">Change User Password</button></td>
@@ -37,7 +38,9 @@
 	<thead>
 		<tr>
 			<td>Issues</td>
-			<td>Project</td>
+			<td>Issue Id</td>
+			<td>Project Name</td>
+			<td>Project Id</td>
 			<td>Description</td>
 			<td>Issue Key</td>
 			<td>Due Date</td>
@@ -46,6 +49,7 @@
 			<tbody>
 		<tr ng-repeat="issue in issues" >
 			<td>{{issue.Title}}</td>
+			<td>{{issue.Id}}</td>
 			<td>{{issue.Project.Name}}</td>
 			<td>{{issue.Project.Id}}</td>
 			<td>{{issue.Description}}</td>
@@ -63,7 +67,7 @@
 	<table class="table table-striped" ng-show="isHideProjects">
 		<thead>
 		<tr>
-			<td>Project</td>
+			<td>Project Id</td>
 			<td>Project Name</td>
 			<td>Description Key</td>
 			<td>Project TransitionSchemeId</td>
