@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<body>
+<div class=jumbotron>
+    <h2 style="margin-top: 0"> Project Page</h2>
+
+    <form>
+        <div >
+            <div class="form-group" >
+
+                <select  class="form-control" ng-controller="DashboardUserController" ng-model="project.Id">
+                    <option ng-repeat="project in allProjects">{{project.Id}}</option>
+                </select>
+                <button class="btn btn-success" ng-click="getProject()">Show project by chosen Id</button>
+                <button  class="btn btn-success" ng-click="viewAnotherProject()">Vew Another Project</button>
+            </div>
+
+            <div class="form-group" ng-show="isHideProject">
+                <div class="form-group">
+                    <label for="projectInfoDescription">Description</label>
+                    <input class="form-control" id="projectInfoDescription" ng-model="projectInfo.Description" value="{{projectInfo.Description}}" >
+                </div>
+                <div class="form-group">
+                    <label for="projectInfoId">Project Id</label>
+                    <input class="form-control" id="projectInfoId" ng-model="projectInfo.Id" value="{{projectInfo.Id}}" >
+                </div>
+                <div class="form-group" ng-repeat="label in projectInfo.Labels">
+                    <label for="projectInfoLables">Label Id</label>
+                    <input type="text" class="form-control" id="projectInfoLables"  ng-model="label.Id" value="{{label.Id}}" >
+                    <label for="projectInfoLName">Label Name</label>
+                    <input type="text" class="form-control" id="projectInfoLName"  ng-model="label.Name" value="{{label.Name}}" >
+                </div>
+
+                <div class="form-group" ng-repeat="priority in projectInfo.Priorities">
+                    <label for="projectInfoPriorityId">Priority Id</label>
+                    <input type="text" class="form-control" id="projectInfoPriorityId"  ng-model="priority.Id" value="{{priority.Id}}" >
+                    <label for="projectInfoPName">Priority Name</label>
+                    <input type="text" class="form-control" id="projectInfoPName"  ng-model="priority.Name" value="{{priority.Name}}" >
+                </div>
+
+                <div class="form-group">
+                    <label for="projectInfoKey">Project Key</label>
+                    <input type="text" class="form-control" id="projectInfoKey" ng-model="projectInfo.ProjectKey" value="{{projectInfo.ProjectKey}}"  >
+                    </input>
+                </div>
+                div class="form-group">
+                <label for="projectInfoLeadName">Lead Name</label>
+                <input type="text" class="form-control" id="projectInfoLeadName" ng-model="projectInfo.Lead.Username" value="{{projectInfo.Lead.Username}}"  >
+                </input>
+            </div>
+                <div class="form-group">
+                    <label for="projectInfoSchemed">TransitionSchemeId</label>
+                    <input type="text" class="form-control" id="projectInfoSchemed" ng-model="projectInfo.TransitionSchemeId" value="{{projectInfo.TransitionSchemeId}}"  >
+                </div>
+
+                </div>
+        </div>
+    </form>
+
+
+</div>
+</body>
+</html>

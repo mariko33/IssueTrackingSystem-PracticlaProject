@@ -16,7 +16,8 @@
     <h2 style="margin-top: 0"> Issue Page</h2>
 
     <form>
-        <div class="form-group">
+        <div class="col-md-7">
+        <div class="form-group" >
 
             <select  class="form-control" ng-controller="DashboardUserController" ng-model="issue.Id">
                 <option ng-repeat="issue in issues">{{issue.Id}}</option>
@@ -64,7 +65,26 @@
         </div>
 
     </div>
+    </div>
+        <div class="md-col-4">
+            <div class="form-droup">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td class="md-col-2" ng-model="issueInfo.Status.Id">{{issueInfo.Status.Id}}</td>
+                        <td class="md-col-2" ng-model="issueInfo.Status.Name">{{issueInfo.Status.Name}}</td>
+                        <td class="md-col-2"></td>
+                        <td class="md-col-1"><button ng-click="changeIssueStatus(issue.Id,issueInfo.Status.Id)">Change Status</button></td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
     </form>
+
+
 </div>
 </body>
 </html>

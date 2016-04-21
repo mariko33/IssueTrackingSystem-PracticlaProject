@@ -55,5 +55,9 @@ app.config(function($routeProvider){
     templateUrl: 'templates/issuePage.html',
     controller: 'IssueController'
   });
+  $routeProvider.when('/projects', {
+    templateUrl: 'templates/projectPage.html',
+    controller: 'ProjectController'
+  });
 
 })

@@ -11,12 +11,21 @@ app.controller('IssueController', function($scope,$q, $location, issueService){
         issueService.getIssue(id).then(function(response){
             $scope.issueInfo=response.data;
             $scope.isHideIssue = true;
-            console.log($scope.issueInfo);
+            $scope.issueChange={};
+
+            $scope.changeIssueStatus=function(id,param){
+                issueService.changeStatus(id,param).then(function(response){
+                    console.log(response);
+                },function(err){
+
+                })
+
+            }
         },function(){})
     };
     $scope.viewAnotherIssue=function(){
         $scope.isHideIssue=false;
-    }
+    };
 
 
 

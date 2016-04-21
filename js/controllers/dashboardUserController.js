@@ -78,6 +78,9 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
     };
     $scope.viewMyIssues=function(){
         $location.path('/issues');
+    };
+    $scope.viewProject=function(){
+        $location.path('/projects');
     }
 
 

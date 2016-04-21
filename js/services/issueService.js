@@ -47,14 +47,44 @@ app.factory('issueService',function($http,$q, baseServiceUrl, authService){
             });
             return deferred.promise;
         },
-       /* getIssue: function (id, success, error) {
-                           var request = {
-                                     method: 'GET',
-                                     url: baseServiceUrl + 'issues/' + id,
-                                     headers: authService.getAuthHeaders()
-                             };
-                             $http(request).success(success).error(error);
-                         },*/
+
+        changeStatus:function(id,statusId){
+            var deferred=$q.defer();
+            var request={
+                method:'PUT',
+                url:baseServiceUrl+'issues/'+id+'/changestatus',
+                params:{'statusid':statusId},
+                headers:authService.getAuthHeaders()
+            };
+            $http(request).then(function(response){
+                deferred.resolve(response)
+                console.log(response)
+            },function(err){
+                console.log(err)
+            });
+
+            return deferred.promise;
+        },
+
+
+        getProject:function(id){
+            var deferred=$q.defer();
+            var request={
+                method:'GET',
+                url:baseServiceUrl+'Projects/'+id,
+                headers:authService.getAuthHeaders()
+            };
+            $http(request).then(function(response){
+                deferred.resolve(response);
+                console.log(response);
+            },function(err){
+                console.log(err);
+            });
+
+            return deferred.promise;
+
+        },
+
 
 
 
@@ -93,7 +123,7 @@ app.factory('issueService',function($http,$q, baseServiceUrl, authService){
                 console.log(myIssues);
                 return myIssues;
             }
-        },
+        }
 
         /*addIssue:function(data, success,error){
             var request={
