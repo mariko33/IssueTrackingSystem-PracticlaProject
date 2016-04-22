@@ -22,8 +22,8 @@
 		<tr>
 			<!--<td><button href="#" ng-click="hideIssues()">Issues</button></td>-->
 			<td><button  ng-click="viewMyIssues()">View issues</button></td>
-			<!--<td><button  ng-show="isAdmin", ng-click="hideProjects()">List Project</button></td>-->
-			<td><button ng-click="hideProjects()">List Projects</button></td>
+			<td><button  ng-show="isAdmin", ng-click="hideProjects()">List Project</button></td>
+			<td><button ng-click="hideMyProjects()">List My Projects</button></td>
 			<td><button ng-click="viewProject()">View Project</button></td>
 			<td><button  ng-show="isAdmin", ng-click="add()">Add Project</button></td>
 			<td><button  ng-click="changePassword()">Change User Password</button></td>
@@ -83,30 +83,44 @@
 		<td>{{project.Name}}</td>
 		<td>{{project.ProjectKey}}</td>
 		<td>{{project.TransitionSchemeId}}</td>
-
-
 	</tr>
 
 		</tbody >
 		</table>
 	</div>
+
+
+		<div class="col-md-6">
+			<table class="table table-striped" ng-show="isHideMyProjects">
+				<thead>
+				<tr>
+					<td>Project Id</td>
+					<td>Project Name</td>
+					<td>Description Key</td>
+					<td>Project TransitionSchemeId</td>
+				</tr>
+				</thead>
+
+				<tbody>
+
+				<tr ng-repeat="myProject in myProjects" >
+					<td>{{myProject.Id}}</td>
+					<td>{{myProject.Name}}</td>
+					<td>{{myProject.ProjectKey}}</td>
+					<td>{{myProject.TransitionSchemeId}}</td>
+				</tr>
+
+				</tbody >
+			</table>
+		</div>
+
+
+
+
+
 	</div>
 
-		<!--<tr>
-			<td>Bad Request has no message describing the problem</td>
-			<td>SIT</td>
-			<td>28/03/2016</td>
-		</tr>
-		<tr>
-			<td>Adding new product doesn't list correct price</td>
-			<td>Cart Management</td>
-			<td>30/03/2016</td>
-		</tr>
-		<tr>
-			<td>English version broken</td>
-			<td>Nasdaq informational site</td>
-			<td>02/04/2016</td>
-		</tr>-->
+
 
 </div>
 </body>

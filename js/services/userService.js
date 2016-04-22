@@ -77,7 +77,7 @@ app.factory('userService',function($http,$q,baseServiceUrl,authService){
                 success(data);
             }).error(error);
 
-        },
+        }
 
 
     }

@@ -15,15 +15,16 @@
 <div class=jumbotron>
     <h2 style="margin-top: 0"> Issue Page</h2>
 
-    <form>
-        <div class="col-md-7">
-        <div class="form-group" >
+    <form class="col-md-15">
 
+        <div class="col-md-5">
+        <div class="form-group" >
             <select  class="form-control" ng-controller="DashboardUserController" ng-model="issue.Id">
                 <option ng-repeat="issue in issues">{{issue.Id}}</option>
             </select>
             <button class="btn btn-success" ng-click="getIssue()">Show issues by chosen Id</button>
             <button  class="btn btn-success" ng-click="viewAnotherIssue()">Vew Another Issue</button>
+            <button  class="btn btn-success" ng-show="showEditIssue" ng-click="editIssue()">Edit issues</button>
         </div>
 
     <div class="form-group" ng-show="isHideIssue">
@@ -55,26 +56,30 @@
         </div>
         <div class="form-group">
             <label for="issueInfoProjectName">Project Name</label>
-            <input type="text" class="form-control" id="issueInfoProjectName" ng-model="issueInfo.Project.Name" value="{{issueInfo.Project.Name}}" >
+            <input type="text" class="form-control" id="issueInfoProjectName" ng-model="issueInfo.Project.Name" value="{{issueInfo.Project.Name}}">
             <br>
         </div>
         <div class="form-group">
             <label for="issueInfoProjectId">Project Id</label>
-            <input type="text" class="form-control" id="issueInfoProjectId" ng-model="issueInfo.Project.Id" value="{{issueInfo.Project.Id}}" >
+            <input type="text" class="form-control" id="issueInfoProjectId" ng-model="issueInfo.Project.Id" value="{{issueInfo.Project.Id}}" disabled>
+            <button class="btn btn-success" ng-click="viewProject(issueInfo.Project.Id)">View Project</button>
             <br>
         </div>
 
     </div>
+
+
     </div>
-        <div class="md-col-4">
-            <div class="form-droup">
-                <table>
+
+        <div class="md-col-3">
+            <div class="form-group">
+                <table ng-show="showIssueStatus">
                     <tbody>
                     <tr>
-                        <td class="md-col-2" ng-model="issueInfo.Status.Id">{{issueInfo.Status.Id}}</td>
-                        <td class="md-col-2" ng-model="issueInfo.Status.Name">{{issueInfo.Status.Name}}</td>
-                        <td class="md-col-2"></td>
-                        <td class="md-col-1"><button ng-click="changeIssueStatus(issue.Id,issueInfo.Status.Id)">Change Status</button></td>
+                        <td ng-model="issueInfo.Status.Id">{{issueInfo.Status.Id}}</td>
+                        <td  ng-model="issueInfo.Status.Name">{{issueInfo.Status.Name}}</td>
+                        <td><input type="number" ng-model="status.Id"></td>
+                        <td class="md-col-1"><button class="btn btn-success" ng-click="changeIssueStatus(issue.Id,status.Id)">Change Status</button></td>
                     </tr>
                     </tbody>
                 </table>
@@ -82,7 +87,63 @@
             </div>
 
         </div>
+
+
+
+            <div class="md-col-5">
+                <form>
+                <div class="form-group" ng-show="isHideProject">
+                    <div class="form-group">
+                        <label for="projectInfoName">Project Name</label>
+                        <input class="form-control" id="projectInfoName" ng-model="projectInfo.Name" value="{{projectInfo.Name}}" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectInfoDescription">Description</label>
+                        <input class="form-control" id="projectInfoDescription" ng-model="projectInfo.Description" value="{{projectInfo.Description}}" >
+                    </div>
+
+                    <div class="form-group" ng-repeat="label in projectInfo.Labels">
+                        <label for="projectInfoLables">Label Id</label>
+                        <input type="text" class="form-control" id="projectInfoLables"  ng-model="label.Id" value="{{label.Id}}" >
+                        <label for="projectInfoLName">Label Name</label>
+                        <input type="text" class="form-control" id="projectInfoLName"  ng-model="label.Name" value="{{label.Name}}" >
+                    </div>
+
+                    <div class="form-group" ng-repeat="priority in projectInfo.Priorities">
+                        <label for="projectInfoPriorityId">Priority Id</label>
+                        <input type="text" class="form-control" id="projectInfoPriorityId"  ng-model="priority.Id" value="{{priority.Id}}" >
+                        <label for="projectInfoPName">Priority Name</label>
+                        <input type="text" class="form-control" id="projectInfoPName"  ng-model="priority.Name" value="{{priority.Name}}" >
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="projectInfoLeadId">Lead Id</label>
+                        <input type="text" class="form-control" id="projectInfoLeadId" ng-model="projectInfo.Lead.Id" value="{{projectInfo.Lead.Id}}"  >
+                        </input>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectInfoKey">Project Key</label>
+                        <input type="text" class="form-control" id="projectInfoKey" ng-model="projectInfo.ProjectKey" value="{{projectInfo.ProjectKey}}"  >
+                        </input>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectInfoSchemed">TransitionSchemeId</label>
+                        <input type="text" class="form-control" id="projectInfoSchemed" ng-model="projectInfo.TransitionSchemeId" value="{{projectInfo.TransitionSchemeId}}"  >
+                    </div>
+                </div>
+
+                </form>
+            </div>
+
+
+
     </form>
+
+
 
 
 </div>

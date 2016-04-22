@@ -15,13 +15,6 @@ app.factory('authService',
                             headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
                         };
 
-                        //return $http(request);
-
-                        /*var request = {
-                            method: 'POST',
-                            url: baseServiceUrl + '/api/user/login',
-                            data: userData
-                        };*/
                            $http(request).success(function(data) {
                             sessionStorage['currentUser'] = JSON.stringify(data);
                             success(data);
@@ -97,14 +90,17 @@ app.factory('authService',
                         return headers;
                     },
 
-                    getToken:function(){
+                    getTokenType:function(){
+                        var headers={};
                         var currentUser = this.getCurrentUser();
                         if(currentUser) {
-                        return   'Bearer ' + currentUser.access_token;
+                            headers['Authorization'] = 'Bearer ' + currentUser.access_token;
+                            headers['Content-Type'] = 'application/json';
                         }
+                        return headers;
 
                     }
-
                 }
+
     }
 );

@@ -85,7 +85,26 @@ app.factory('issueService',function($http,$q, baseServiceUrl, authService){
 
         },
 
+        editProject:function(id,data){
+            var deferred=$q.defer();
+            var request={
+                method:'PUT',
+                url:baseServiceUrl+'Projects/'+id,
+                data:data,
+                headers:authService.getAuthHeaders()
+            };
 
+            $http(request).then(function(response){
+                deferred.resolve(response);
+                console.log(response);
+            },function(err){
+                console.log(err);
+            });
+
+            return deferred.promise;
+
+
+        },
 
 
         getAllProject: function () {
@@ -106,6 +125,31 @@ app.factory('issueService',function($http,$q, baseServiceUrl, authService){
             });
             return deferred.promise;
         },
+
+
+        getMyProjects: function (addParams) {
+            var deferred = $q.defer();
+            var request = {
+                method: 'GET',
+                url: baseServiceUrl + 'projects',
+                params: addParams,
+                headers: authService.getAuthHeaders()
+
+            };
+
+            $http(request).then(function(data){
+                deferred.resolve(data);
+                console.log(data);
+
+            },function(err){
+                console.log(err)
+
+            });
+
+
+            return deferred.promise;
+        },
+
 
         allUsersObj:function(){
             var allUsers=sessionStorage['allUsers'];
