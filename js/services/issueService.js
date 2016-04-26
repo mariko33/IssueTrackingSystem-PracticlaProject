@@ -48,6 +48,27 @@ app.factory('issueService',function($http,$q, baseServiceUrl, authService){
             return deferred.promise;
         },
 
+        editIssue:function(id,data){
+            var deferred=$q.defer();
+            var request={
+                method:'PUT',
+                url:baseServiceUrl+'Issues/'+id,
+                data:data,
+                headers:authService.getAuthHeaders()
+            };
+
+            $http(request).then(function(response){
+                deferred.resolve(response);
+                console.log(response);
+            },function(err){
+                console.log(err);
+            });
+
+            return deferred.promise;
+
+
+        },
+
         changeStatus:function(id,statusId){
             var deferred=$q.defer();
             var request={

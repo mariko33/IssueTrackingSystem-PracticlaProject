@@ -29,8 +29,8 @@
                     <option ng-repeat="project in allProjects">{{project.Id}}</option>
                 </select>-->
                 <label for="myProjects">Choose Id from my Projects</label>
-                <select id="myProjects" class="form-control" ng-controller="DashboardUserController" ng-model="myProject.Id">
-                    <option ng-repeat="myProject in myProjects">{{myProject.Id}}</option>
+                <select id="myProjects" class="form-control" ng-controller="DashboardUserController" ng-model="myProject.Id" >
+                    <option ng-repeat="myProject in myProjects">{{myProject.Name}}</option>
                 </select>
                </div>
 

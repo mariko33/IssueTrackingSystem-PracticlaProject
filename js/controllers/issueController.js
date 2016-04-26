@@ -69,6 +69,45 @@ app.controller('IssueController', function($scope,$q, $location, issueService,us
 
 
 
+    $scope.editIssue=function(id){
+        $scope.data={};
+        $scope.labels=[];
+        var temp=$scope.issueInfo.Labels;
+        for (var i=0;i<temp.length;i++){
+            $scope.labels.push(temp[i]['Name']);
+        };
+
+
+
+        $scope.data={
+            'Title':$scope.issueInfo.Title,
+            'Description':$scope.issueInfo.Description,
+            'DueDate':$scope.issueInfo.DueDate,
+            'ProjectId':$scope.issueInfo.Project.Id,
+            'AssigneeId':$scope.issueInfo.Assignee.Id,
+            'PriorityId':$scope.issueInfo.Priority.Id,
+            'Label':$scope.labels
+
+        };
+
+
+
+        var data=$scope.data;
+
+        issueService.editIssue(id,data).then(function(response){
+            console.log(response);
+            notifyService.showInfo(response.statusText);
+            $scope.isHideEdit=false;
+
+        },function(err){
+            console.log(err)
+            notifyService.showError("Failed to edit", err)
+        })
+    };
+
+
+
+
 
 
 })

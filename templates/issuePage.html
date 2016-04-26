@@ -15,16 +15,19 @@
 <div class=jumbotron>
     <h2 style="margin-top: 0"> Issue Page</h2>
 
-    <form class="col-md-15">
+    <form>
 
         <div class="col-md-5">
         <div class="form-group" >
+            <!--<select  class="form-control" ng-controller="DashboardUserController" ng-model="issue.Id">
+                <option  ng-repeat="issue in issues">{{issue.Id}}</option>
+            </select>-->
             <select  class="form-control" ng-controller="DashboardUserController" ng-model="issue.Id">
-                <option ng-repeat="issue in issues">{{issue.Id}}</option>
+                <option  ng-repeat="issue in issues" value="{{issue.Id}}">{{issue.Title}}</option>
             </select>
             <button class="btn btn-success" ng-click="getIssue()">Show issues by chosen Id</button>
             <button  class="btn btn-success" ng-click="viewAnotherIssue()">Vew Another Issue</button>
-            <button  class="btn btn-success" ng-show="showEditIssue" ng-click="editIssue()">Edit issues</button>
+            <button  class="btn btn-success" ng-show="showEditIssue" ng-click="editIssue(issue.Id)">Edit issues</button>
         </div>
 
     <div class="form-group" ng-show="isHideIssue">
@@ -38,7 +41,7 @@
         </div>
         <div class="form-group">
             <label for="issueInfoDueDate">Due Date</label>
-            <input type="text" class="form-control" id="issueInfoDueDate"  ng-model="issueInfo.DueDate" value="{{issueInfo.DueDate}}" >
+            <input type="datetime" class="form-control" id="issueInfoDueDate"  ng-model="issueInfo.DueDate" value="{{issueInfo.DueDate}}" >
         </div>
         <div class="form-group">
             <label for="issueInfoAssignee">Assignee</label>
@@ -49,6 +52,15 @@
             <label for="issueInfoDescription">Description</label>
             <input type="text" class="form-control" id="issueInfoDescription" ng-model="issueInfo.Description" value="{{issueInfo.Description}}"  >
         </div>
+
+        <div class="form-group" ng-repeat="label in issueInfo.Labels" >
+            <label for="issueInfoLables">Label Id</label>
+            <input type="text" class="form-control" id="issueInfoLables"  ng-model="label.Id" value="{{label.Id}}" >
+            <label for="issueInfoLName">Label Name</label>
+            <input type="text" class="form-control" id="issueInfoLName"  ng-model="label.Name" value="{{label.Name}}" >
+        </div>
+
+
         <div class="form-group">
             <label for="issueInfoIssueKey">Issue Key</label>
             <input type="text" class="form-control" id="issueInfoIssueKey" ng-model="issueInfo.IssueKey" value="{{issueInfo.IssueKey}}">
@@ -71,7 +83,7 @@
 
     </div>
 
-        <div class="md-col-3">
+        <div class="md-col-2">
             <div class="form-group">
                 <table ng-show="showIssueStatus">
                     <tbody>
@@ -90,7 +102,7 @@
 
 
 
-            <div class="md-col-5">
+            <div class="md-col-4">
                 <form>
                 <div class="form-group" ng-show="isHideProject">
                     <div class="form-group">
