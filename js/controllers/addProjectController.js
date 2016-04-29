@@ -12,11 +12,12 @@ app.controller('AddProjectController', function($scope, $location, adminService)
             function success(success) {
                 // notifyService.showInfo("Registered successfully");
                 console.log('success')
-                $location.path('/dashboard');
+                //$location.path('/dashboard');
             },
             function error(err) {
                 //notifyService.showError("Failed to register", err);
                // $location.path('/');
+                console.log(err)
             }
         )
 

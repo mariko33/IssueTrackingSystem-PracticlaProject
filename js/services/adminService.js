@@ -10,11 +10,7 @@ app.factory('adminService',
             var request = {
                 method: 'POST',
                 url: baseServiceUrl + 'projects',
-                //headers:authService.getAuthHeaders(),
-                headers:{
-                    'Authorization':authService.getToken(),
-                    'Content-Type':'application/json'
-                },
+                headers:authService.getAuthHeaders(),
                 data: data
 
             };
@@ -29,7 +25,9 @@ app.factory('adminService',
             $http(request).success(function(data) {
                 success(data);
                 console.log(data);
-            }).error(error);
+            }).error(function(err){
+                console.log(err)
+            });
         }
 
 

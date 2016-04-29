@@ -1,10 +1,11 @@
 'use strict'
 
-app.controller('IssueController', function($scope,$q, $location, issueService,userService,notifyService){
+app.controller('IssueController', function($scope,$q, $location, $routeParams, issueService,userService,notifyService){
 
     $scope.issue={};
 
     $scope.isHideIssue=false;
+    var id=$routeParams.Id;
 
 
     $scope.getCurrentUserId=userService.getCurrentUser().then(function(response){
@@ -14,8 +15,47 @@ app.controller('IssueController', function($scope,$q, $location, issueService,us
     },function(){});
 
 
-    $scope.getIssue=function(){
-        var id=$scope.issue.Id;
+
+    $scope.getIssue=issueService.getIssue(id).then(function(response){
+        $scope.issueInfo=response.data;
+        $scope.isAssignee=function(){
+            return $scope.issueInfo.Assignee.Id===$scope.currentUserId;
+        };
+
+
+        $scope.isProjectLead=function(){
+            return $scope.issueInfo.Author.Id===$scope.currentUserId;
+        };
+        $scope.showIssueStatus=$scope.isAssignee;
+        $scope.showEditIssue=$scope.isProjectLead;
+
+        $scope.status={};
+
+        $scope.changeIssueStatus=function(id,param){
+            issueService.changeStatus(id,param).then(function(response){
+                console.log(response);
+                notifyService.showInfo("The status has been changed")
+
+            },function(err){
+                notifyService.showError("Failed to change status",err);
+
+            })
+
+        }
+
+
+    },function(err){
+        console.log(err)
+    });
+
+    $scope.returnToDashboard=function(){
+        $location.path('/dashboard');
+    }
+
+
+    /*$scope.getIssue=function(){
+
+        //var id=$scope.issue.Id;
         issueService.getIssue(id).then(function(response){
             $scope.issueInfo=response.data;
 
@@ -103,7 +143,7 @@ app.controller('IssueController', function($scope,$q, $location, issueService,us
             console.log(err)
             notifyService.showError("Failed to edit", err)
         })
-    };
+    };*/
 
 
 

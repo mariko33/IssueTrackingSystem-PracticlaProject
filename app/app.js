@@ -51,7 +51,7 @@ app.config(function($routeProvider){
     templateUrl:'templates/changePassword.html',
     controller:'ChangeUserPassword'
   });
-  $routeProvider.when('/issues', {
+  $routeProvider.when('/issues/:Id', {
     templateUrl: 'templates/issuePage.html',
     controller: 'IssueController'
   });

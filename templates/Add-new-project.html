@@ -29,15 +29,12 @@
     </div>
     <div class="form-group">
         <label for="exampleInputPassword3">Labels (comma separated)</label>
-        <textarea class="form-control" id="exampleInputPassword3" placeholder="Labels"></textarea>
-        <p ng-model="projectData.labels">{{"[{'Name':'Label1'},{'Name':'Label2'}]"}}</p>
+        <textarea class="form-control" id="exampleInputPassword3" placeholder="Labels" ng-list ng-model="projectData.Labels"></textarea>
         <br>
     </div>
-
     <div class="form-group">
         <label for="exampleInputPassword4">Priorities (comma separated)</label>
-        <textarea class="form-control" id="exampleInputPassword4" placeholder="Available Priorities For The Issues" ></textarea>
-        <p ng-model="projectData.priorities">{{"[{'Name':'Low'},{'Name':'Medium'}]"}}</p>
+        <textarea class="form-control" id="exampleInputPassword4" placeholder="Available Priorities For The Issues" ng-list ng-model="projectData.Priorities" ></textarea>
      </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Leader</label>

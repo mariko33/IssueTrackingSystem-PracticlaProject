@@ -22,8 +22,8 @@
 		<tr>
 			<!--<td><button href="#" ng-click="hideIssues()">Issues</button></td>-->
 			<td><button  ng-click="viewMyIssues()">View issues</button></td>
-			<td><button  ng-show="isAdmin", ng-click="hideProjects()">List Project</button></td>
-			<td><button ng-click="hideMyProjects()">List My Projects</button></td>
+			<td><button  ng-show="isAdmin", ng-click="hideProjects()">List All Project</button></td>
+			<td><button ng-click="hideMyProjects()">List My Projects(I am ProjectLeadr)</button></td>
 			<td><button ng-click="viewProject()">View Project</button></td>
 			<td><button  ng-show="isAdmin", ng-click="add()">Add Project</button></td>
 			<td><button  ng-click="changePassword()">Change User Password</button></td>
@@ -34,8 +34,9 @@
 </table>
 
 		<!--<table class="table table-striped" ng-show="isHideIssues">-->
-	<div>
-	<div class="col-md-6">
+	<div class="container-fluid">
+	<div class="row">
+	<div class="col-md-4">
 	<table class="table table-striped">
 	<thead>
 		<tr>
@@ -57,20 +58,21 @@
 			<td>{{issue.Description}}</td>
 			<td>{{issue.IssueKey}}</td>
 			<td>{{issue.DueDate}}</td>
-			<!--<td><button ng-click="addIssue(issue.Project.Id)">Add Issue</button></td>
-			<td><button ng-click="editIssue()">Edit Issue</button></td>-->
+			<td><button class="btn btn-success"><a href="#/issues/{{issue.Id}}">View</a></button></td>
+			<!--<td><button ng-click="editIssue()">Edit Issue</button></td>-->
 		</tr>
 
 	</tbody >
 			</table>
 	</div>
 
-	<div class="col-md-6">
+	<div class="col-md-4">
 	<table class="table table-striped" ng-show="isHideProjects">
 		<thead>
 		<tr>
 			<td>Project Id</td>
 			<td>Project Name</td>
+			<td>Project Lead</td>
 			<td>Description Key</td>
 			<td>Project TransitionSchemeId</td>
 		</tr>
@@ -81,6 +83,7 @@
 	<tr ng-repeat="project in allProjects" >
 		<td>{{project.Id}}</td>
 		<td>{{project.Name}}</td>
+		<td>{{project.Lead.Username}}</td>
 		<td>{{project.ProjectKey}}</td>
 		<td>{{project.TransitionSchemeId}}</td>
 	</tr>
@@ -89,13 +92,13 @@
 		</table>
 	</div>
 
-
-		<div class="col-md-6">
-			<table class="table table-striped" ng-show="isHideMyProjects">
+		<div class="col-md-4">
+			<table class="table table-striped"  ng-show="isHideMyProjects">
 				<thead>
 				<tr>
 					<td>Project Id</td>
 					<td>Project Name</td>
+					<td>Project Lead</td>
 					<td>Description Key</td>
 					<td>Project TransitionSchemeId</td>
 				</tr>
@@ -106,6 +109,7 @@
 				<tr ng-repeat="myProject in myProjects" >
 					<td>{{myProject.Id}}</td>
 					<td>{{myProject.Name}}</td>
+					<td>{{myProject.Lead.Username}}</td>
 					<td>{{myProject.ProjectKey}}</td>
 					<td>{{myProject.TransitionSchemeId}}</td>
 				</tr>
@@ -115,10 +119,8 @@
 		</div>
 
 
-
-
-
 	</div>
+		</div>
 
 
 
