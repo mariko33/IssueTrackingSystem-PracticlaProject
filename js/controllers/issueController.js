@@ -5,7 +5,7 @@ app.controller('IssueController', function($scope,$q, $location, $routeParams, i
     $scope.issue={};
 
     $scope.isHideIssue=false;
-    var id=$routeParams.Id;
+    var Id=$routeParams.Id;
 
 
     $scope.getCurrentUserId=userService.getCurrentUser().then(function(response){
@@ -15,8 +15,20 @@ app.controller('IssueController', function($scope,$q, $location, $routeParams, i
     },function(){});
 
 
+    /*Date.prototype.yyyymmdd = function() {
+        var yyyy = this.getFullYear().toString();
+        var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+        var dd  = this.getDate().toString();
+        return yyyy + (mm[1]?mm:"0"+mm[0]) + (dd[1]?dd:"0"+dd[0]); // padding
+    };
 
-    $scope.getIssue=issueService.getIssue(id).then(function(response){
+   var currentDate = new Date();
+*/
+
+
+
+
+    $scope.getIssue=issueService.getIssue(Id).then(function(response){
         $scope.issueInfo=response.data;
         $scope.isAssignee=function(){
             return $scope.issueInfo.Assignee.Id===$scope.currentUserId;
@@ -31,14 +43,13 @@ app.controller('IssueController', function($scope,$q, $location, $routeParams, i
 
         $scope.status={};
 
-        $scope.changeIssueStatus=function(id,param){
-            issueService.changeStatus(id,param).then(function(response){
+        $scope.changeIssueStatus=function(param){
+            issueService.changeStatus(Id,param).then(function(response){
                 console.log(response);
                 notifyService.showInfo("The status has been changed")
 
             },function(err){
-                notifyService.showError("Failed to change status",err);
-
+                notifyService.showError("Failed to edit", err)
             })
 
         }
@@ -48,9 +59,35 @@ app.controller('IssueController', function($scope,$q, $location, $routeParams, i
         console.log(err)
     });
 
+    $scope.getIssueComments=issueService.getIssuesComments(Id).then(function(response){
+        console.log(response);
+        $scope.comments=response.data;
+    },function(err){
+        console.log(err)
+    })
+
+    $scope.comment={};
+
+    $scope.addComments=function(){
+        issueService.addIssuesComments(Id,$scope.comment).then(function(response){
+            notifyService.showInfo('The comment is added');
+
+            console.log(response)
+        },function(err){
+            notifyService.showError('The comment was not added',err);
+            console.log(err)
+
+        })
+    }
+
     $scope.returnToDashboard=function(){
         $location.path('/dashboard');
+    };
+
+    $scope.editIssue=function(){
+        $location.path('/issue/'+Id+'/edit')
     }
+
 
 
     /*$scope.getIssue=function(){
@@ -90,6 +127,19 @@ app.controller('IssueController', function($scope,$q, $location, $routeParams, i
 
             }
         },function(){});
+     $scope.status={};
+
+     $scope.changeIssueStatus=function(id,param){
+     issueService.changeStatus(id,param).then(function(response){
+     console.log(response);
+     notifyService.showInfo("The status has been changed")
+
+     },function(err){
+     notifyService.showError("Failed to change status",err);
+
+     })
+
+     }
 
 
         $scope.viewProject=function(id){

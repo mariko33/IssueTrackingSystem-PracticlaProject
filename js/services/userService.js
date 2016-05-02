@@ -12,7 +12,7 @@ app.factory('userService',function($http,$q,baseServiceUrl,authService){
             $http(request).success(success).error(error);
         },
 
-        getCurrentUser:function(success,errorr){
+        getCurrentUser:function(){
             var deferred = $q.defer();
             var request={
                 method:'GET',
@@ -29,7 +29,8 @@ app.factory('userService',function($http,$q,baseServiceUrl,authService){
                 sessionStorage['currentUserMe'] = JSON.stringify(data);
                 console.log(sessionStorage['currentUserMe']);
 
-            },function(){
+            },function(err){
+                console.log(err)
 
             });
 

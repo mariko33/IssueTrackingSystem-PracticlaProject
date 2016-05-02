@@ -42,7 +42,7 @@ app.config(function($routeProvider){
     templateUrl:'templates/Add-new-issue.html',
     controller:'AddIssueController'
   });
-  $routeProvider.when('/issue/edit',{
+  $routeProvider.when('/issue/:Id/edit',{
     templateUrl:'templates/edit-issue.html',
     controller:'EditIssueController'
   });

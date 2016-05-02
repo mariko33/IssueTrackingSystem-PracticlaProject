@@ -72,14 +72,21 @@ app.factory('authService',
                         return (currentUser != undefined) && (!currentUser.isAdmin);
                     },
 
-                    isAdmin : function() {
+                    /*isAdmin : function() {
                     var currentUserMe = JSON.parse(sessionStorage['currentUserMe']);
                         if(currentUserMe){
-                       console.log(currentUserMe.isAdmin)
-                            return currentUserMe.isAdmin;
+                       console.log(currentUserMe.data.isAdmin)
+                            return currentUserMe.data.isAdmin;
                       }
                     },
 
+                    getUserMe:function() {
+                        var currentUserMe = JSON.parse(sessionStorage['currentUserMe']);
+                        if(currentUserMe){
+                            console.log(currentUserMe.data.Id)
+                            return currentUserMe.data.Id;
+                        }
+                    },*/
 
         getAuthHeaders : function() {
                         var headers = {};

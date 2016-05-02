@@ -6,13 +6,52 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
         'pageSize':'10',
         'pageNumber':'1'
     };
-    $scope.getCurrentUser=function(){
+    /*$scope.getCurrentUser=function(){
         userService.getCurrentUser(function(success){
-            console.log('success');
+          $scope.currentUserId=success.data.Id;
+           // console.log($scope.currentUser);
         },function(errorr){
 
         })
+
+        return $scope.currentUserId;
     };
+*/
+    $scope.getCurrentUser=userService.getCurrentUser().then(function(response){
+            $scope.cUser=response.data.Id;
+        console.log($scope.cUser);
+        var filter='Lead.Id='+$scope.cUser;
+
+
+
+        $scope.addParamsMyProjects={
+            'Lead.Id':$scope.cUser,
+            'pageSize':'50',
+            'pageNumber':'1',
+
+        };
+
+        $scope.myAllProjects=issueService.getMyProjects($scope.addParamsMyProjects).then(function (response) {
+                $scope.myProjects = response.data.Projects;
+                console.log($scope.myProjects);
+                console.log($scope.addParamsMyProjects)
+
+            }, function (err) {
+                console.log(err)
+
+            });
+
+
+        },function(err){
+            console.log(err)
+        })
+
+
+
+
+
+
+
      $scope.issueMe=issueService.getIssueMe($scope.addParams).then(function(response){
      $scope.issues=response.data.Issues;
      console.log($scope.issues);
@@ -39,6 +78,7 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
     $scope.isHideMyProjects=false;
     $scope.hideMyProjects=function(){
         $scope.isHideMyProjects=!$scope.isHideMyProjects;
+        /*$scope.myAllProjects();*/
     }
 
     $scope.isAdminStatus=userService.getCurrentUser().then(function(response){
@@ -46,25 +86,31 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
         $scope.isAdmin=response.data.isAdmin;
     },function(){});
 
-    $scope.getCurrentUserId=userService.getCurrentUser().then(function(response){
-        console.log(response.data);
-        $scope.currentUserId=response.data.Id;
-        console.log($scope.currentUserId)
-    },function(){});
+    /*$scope.getCurrentUserId=function() {
+        userService.getCurrentUser().then(function (response) {
+            return  response.data.Id;
 
-
+        }, function () {
+        });
+    }*/
+/*
     $scope.addParamsMyProjects={
-        'Lead.Id':$scope.getCurrentUserId,
+        'Lead.Id':$scope.cUser,
         'pageSize':'50',
         'pageNumber':'1'
     };
-    $scope.myAllProjects=issueService.getMyProjects($scope.addParamsMyProjects).then(function(response){
-        $scope.myProjects=response.data;
-        console.log($scope.myProjects);
-    },function(err){
-        console.log(err)
-    });
 
+    $scope.myAllProjects=function() {
+        issueService.getMyProjects($scope.addParamsMyProjects).then(function (response) {
+            $scope.myProjects = response.data;
+            console.log($scope.myProjects);
+            console.log($scope.addParamsMyProjects)
+
+        }, function (err) {
+            console.log(err)
+
+        });
+    };*/
 
     $scope.add=function(){
         $location.path('/projects/add');
