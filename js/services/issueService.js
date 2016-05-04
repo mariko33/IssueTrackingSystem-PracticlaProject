@@ -220,12 +220,11 @@ app.factory('issueService',function($http,$q,$route, baseServiceUrl, authService
         },
 
 
-        getMyProjects: function (addParams) {
+        getMyProjects: function (currentPageSize,cUser) {
             var deferred = $q.defer();
             var request = {
                 method: 'GET',
-                url: baseServiceUrl + 'Projects/?filter=',
-                params: addParams,
+                url: baseServiceUrl + 'Projects?filter=Lead.Id="'+cUser+'"'+'&pageSize='+currentPageSize+'&pageNumber=1',
                 headers: authService.getAuthHeaders()
 
             };

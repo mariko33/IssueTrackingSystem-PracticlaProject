@@ -18,23 +18,17 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
     };
 */
     $scope.getCurrentUser=userService.getCurrentUser().then(function(response){
-            $scope.cUser=response.data.Id;
+            $scope.cUser=response.data.Id.toString();
         console.log($scope.cUser);
         var filter='Lead.Id='+$scope.cUser;
 
 
 
-        $scope.addParamsMyProjects={
-            'Lead.Id':$scope.cUser,
-            'pageSize':'50',
-            'pageNumber':'1',
 
-        };
-
-        $scope.myAllProjects=issueService.getMyProjects($scope.addParamsMyProjects).then(function (response) {
+        $scope.myAllProjects=issueService.getMyProjects(50,$scope.cUser).then(function (response) {
                 $scope.myProjects = response.data.Projects;
                 console.log($scope.myProjects);
-                console.log($scope.addParamsMyProjects)
+
 
             }, function (err) {
                 console.log(err)

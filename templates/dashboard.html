@@ -70,7 +70,7 @@
 
 
 
-
+<!--
 	<div class="col-md-4">
 	<table class="table table-striped" ng-show="isHideProjects">
 		<thead>
@@ -95,8 +95,8 @@
 
 		</tbody >
 		</table>
-	</div>
-
+	</div>-->
+		<div class="pull-left">
 		<div class="col-md-4">
 			<table class="table table-striped"  ng-show="isHideMyProjects">
 				<thead>
@@ -114,18 +114,21 @@
 				<tr ng-repeat="myProject in myProjects" >
 					<td>{{myProject.Id}}</td>
 					<td>{{myProject.Name}}</td>
-					<td>{{myProject.Lead.Username}}</td>
+					<!--<td>{{myProject.Lead.Username}}</td>
 					<td>{{myProject.ProjectKey}}</td>
-					<td>{{myProject.TransitionSchemeId}}</td>
+					<td>{{myProject.TransitionSchemeId}}</td>-->
+					<td><button class="btn btn-success"><a href="#/projects/{{issue.Id}}">View</a></button></td>
 				</tr>
 				<tr ng-repeat="issue in issues">
-					<td ng-if="issue.Author.Id!=issue.Assignee.Id">{{issue.Project.Name}}</td>
 					<td ng-if="issue.Author.Id!=issue.Assignee.Id">{{issue.Project.Id}}</td>
+					<td ng-if="issue.Author.Id!=issue.Assignee.Id">{{issue.Project.Name}}</td>
+					<td ng-if="issue.Author.Id!=issue.Assignee.Id"><button class="btn btn-success"><a href="#/projects/{{issue.Id}}">View</a></button></td>
 				</tr>
 
 
 				</tbody >
 			</table>
+		</div>
 		</div>
 
 

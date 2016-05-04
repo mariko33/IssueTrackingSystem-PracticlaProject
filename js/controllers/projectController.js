@@ -1,23 +1,22 @@
 'use strict'
 
-app.controller('ProjectController',function($scope,$q,$location,issueService,notifyService){
+app.controller('ProjectController',function($scope,$q,$location,$routeParams, issueService,notifyService){
    // $scope.project={};
 
+    var Id=$routeParams.Id;
     $scope.myProject={};
 
     $scope.isHideProject=false;
     $scope.isHideEdit=false;
 
 
-    $scope.getProject=function(){
-        var id=$scope.myProject.Id;
-        issueService.getProject(id).then(function(response){
+    $scope.getProject= issueService.getProject(Id).then(function(response){
             $scope.projectInfo=response.data;
             $scope.isHideProject = true;
 
             console.log(response);
-        },function(){})
-    };
+        },function(){});
+
     $scope.viewAnotherProject=function(){
         $scope.isHideProject=false;
     };
