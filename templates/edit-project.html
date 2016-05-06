@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<body>
+<div class=jumbotron>
+
+    <div class="form-group">
+        <button class="btn btn-success" ng-click="returnToDashboard()">Dashboard</button>
+    </div>
+
+
+    <h2 style="margin-top: 0"> Project Page</h2>
+
+
+    <form>
+        <div >
+            <div class="container-fluid" >
+                <!-- <label for="allProjects">Choose Id from all Projects</label>-->
+                <!--<select  id="allProjects" class="form-control" ng-show="isAdmin" ng-controller="DashboardUserController" ng-model="project.Id">
+                    <option ng-repeat="project in allProjects">{{project.Id}}</option>
+                </select>-->
+                <!-- <label for="myProjects">Choose Id from my Projects</label>
+                 <select id="myProjects" class="form-control" ng-controller="DashboardUserController" ng-model="myProject.Id" >
+                     <option ng-repeat="myProject in myProjects">{{myProject.Name}}</option>
+                 </select>
+                </div>
+ -->
+                <div class="form-group">
+                    <!--<button class="btn btn-success" ng-click="getProject()">Show project by chosen Id</button>-->
+                    <!--<button  class="btn btn-success" ng-click="viewAnotherProject()">Vew Another Project</button>-->
+                    <!--<button  class="btn btn-success" ng-click="editProject(project.Id,projectInfo)">Edit Project</button>-->
+                    <!--<button  class="btn btn-success" ng-click="editProject()">Edit Project</button>-->
+                </div>
+
+
+                <div class="row">
+                    <div class="form-horizontal" ng-controller="ProjectController">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <div ng-model="editInfo.ProjectKey">Project key:{{projectInfo.ProjectKey}}</div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="projectInfoName" class="col-md-3">Name</label>
+                                <div class="col-md-7">
+                                    <input  class="form-control" id="projectInfoName" ng-model="editInfo.Name" value="{{projectInfo.Name}}" >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectInfoDescription" class="col-md-3">Description</label>
+                                <div class="col-md-7">
+                                    <input class="form-control" id="projectInfoDescription" ng-model="editInfo.Description" value="{{projectInfo.Description}}" >
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectInfoLeadId" class="col-md-3 control-label">Lead Id {{projectInfo.Lead.Id}}--{{projectInfo.Lead.Username}}</label>
+                                <div class="col-md-7">
+                                    <select class="form-control" id="projectInfoLeadId" ng-model="editInfo.ChangeLeadId" >
+                                        <option ng-repeat="user in allUsers" value="{{user.Id}}">{{user.Username}}</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectInfoId" class="col-md-3 control-label">Project Id</label>
+                                <div class="col-md-7">
+                                <input class="form-control" id="projectInfoId" ng-model="editInfo.ProjectId" value="{{editInfo.ProjectId}}" disabled>
+                           </div>
+                            </div>
+<!--
+                            <div class="form-group" ng-repeat="label in projectInfo.Labels">
+                                <label for="projectInfoLName" class="col-md-3 control-label">Label Name</label>
+                                <div class="col-md-7">
+                                <input type="text" class="form-control" id="projectInfoLName"  ng-model="label.Name" value="{{label.Name}}" >
+                           </div>
+                            </div>-->
+                            <div class="form-group">
+                                <label for="projectInfoLName" class="col-md-3 control-label">Labels</label>
+                                <div class="col-md-7">
+                                <textarea class="form-control" id="projectInfoLName" ng-model="editInfo.Arrlabels" ng-list="">
+
+                                </textarea>
+                                    </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectInfoPriority" class="col-md-3 control-label">Priorities</label>
+                                <div class="col-md-7">
+                                <textarea class="form-control" id="projectInfoPriority" ng-model="editInfo.ArrPriorities" ng-list="">
+
+                                </textarea>
+                                </div>
+
+                            </div>
+
+                            <button  class="btn btn-success" ng-click="editProject()">Edit Project</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+            <!--
+                        <div class="form-group" ng-show="isHideEdit">
+
+                            <div class="form-group">
+                                <label for="projectEditName">Project Name</label>
+                                <input class="form-control" id="projectEditName" ng-model="projectEdit.Name" value="{{projectEdit.Name}}" >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectEditDescription">Description</label>
+                                <input class="form-control" id="projectEditDescription" ng-model="projectEdit.Description" value="{{projectEdit.Description}}" >
+                            </div>
+
+                            <div class="form-group" ng-model="projectEdit.labels">
+                                &lt;!&ndash;<label for="projectEditLables">Label Id</label>
+                                <input type="text" class="form-control" id="projectEditLables"  ng-model="projectEdit.labels.Id" value="{{projectEdit.labels.Id}}" >&ndash;&gt;
+                                <label for="projectEditLName">Label Name</label>
+                                <input type="text" class="form-control" id="projectEditLName"  ng-model="projectEdit.labels[0].Name" value="{{projectEdit.labels[0].Name}}" >
+                            </div>
+
+
+
+                            <div class="form-group" ng-model="projectEdit.priorities">
+                                &lt;!&ndash;<label for="projectEditPriorityId">Priority Id</label>
+                                <input type="text" class="form-control" id="projectEditPriorityId"  ng-model="projectEdit.priorities.Id" value="{{projectEdit.priorities.Id}}" >&ndash;&gt;
+                                <label for="projectEditPName">Priority Name</label>
+                                <input type="text" class="form-control" id="projectEditPName"  ng-model="projectEdit.priorities[0].Name" value="{{projectEdit.priorities[0].Name}}" >
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="projectEditLeadId">Lead Id</label>
+                                <input type="text" class="form-control" id="projectEditLeadId" ng-model="projectEdit.LeadId" value="{{projectEdit.LeadId}}"  >
+                                </input>
+                            </div>
+
+
+
+
+                            &lt;!&ndash;<div class="form-group">
+                                <label for="projectInfoKey">Project Key</label>
+                                <input type="text" class="form-control" id="projectInfoKey" ng-model="projectInfo.ProjectKey" value="{{projectInfo.ProjectKey}}"  >
+                                </input>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectInfoSchemed">TransitionSchemeId</label>
+                                <input type="text" class="form-control" id="projectInfoSchemed" ng-model="projectInfo.TransitionSchemeId" value="{{projectInfo.TransitionSchemeId}}"  >
+                            </div>
+            &ndash;&gt;
+
+                            <button  class="btn btn-success" ng-click="editProject(myProject.Id,projectEdit)">Edit Project</button>
+                        </div>-->
+
+
+
+
+        </div>
+    </form>
+
+
+</div>
+</body>
+</html>

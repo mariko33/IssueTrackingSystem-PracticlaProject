@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('ProjectController',function($scope,$q,$location,$routeParams, issueService,notifyService){
+app.controller('ProjectController',function($scope,$q,$location,$routeParams, projectService, issueService,notifyService){
    // $scope.project={};
 
     var Id=$routeParams.Id;
@@ -10,29 +10,58 @@ app.controller('ProjectController',function($scope,$q,$location,$routeParams, is
     $scope.isHideEdit=false;
 
 
-    $scope.getProject= issueService.getProject(Id).then(function(response){
+    $scope.getProject= projectService.getProject(Id).then(function(response){
             $scope.projectInfo=response.data;
-            $scope.isHideProject = true;
+            /*$scope.isHideProject = true;*/
+        $scope.projectInfo.Labels=response.data.Labels;
+        $scope.projectInfo.LabelsStr='';
+        $scope.projectInfo.Arrlabels=[]
+        for(var i=0;i<$scope.projectInfo.Labels.length;i++){
+            $scope.projectInfo.LabelsStr=$scope.projectInfo.LabelsStr+$scope.projectInfo.Labels[i].Name+' ';
+            $scope.projectInfo.Arrlabels.push($scope.projectInfo.Labels[i].Name);
+        };
+
+        $scope.projectInfo.Priorities=response.data.Priorities;
+        $scope.projectInfo.PrioritiesStr='';
+        $scope.projectInfo.ArrPriorities=[]
+        for (var i=0;i<$scope.projectInfo.Priorities.length;i++){
+            $scope.projectInfo.PrioritiesStr=$scope.projectInfo.PrioritiesStr+$scope.projectInfo.Priorities[i].Name+' ';
+            $scope.projectInfo.ArrPriorities.push($scope.projectInfo.Priorities[i].Name)
+        }
 
             console.log(response);
         },function(){});
 
-    $scope.viewAnotherProject=function(){
-        $scope.isHideProject=false;
-    };
-    $scope.edit=function(){
-        $scope.isHideProject=false;
-        $scope.isHideEdit=true;
 
+    $scope.getProjectIssues=issueService.getProjectIssue(Id).then(function(response){
+        $scope.projectIssuesInfo=response.data;
+        console.log(response)
+    },function(err){
+        console.log(err)
+    });
+
+
+    $scope.addIssue=function(){
+        $location.path('/projects/'+Id+'/add-issue')
+    }
+
+    /*$scope.viewAnotherProject=function(){
+        $scope.isHideProject=false;
+    };*/
+    $scope.edit=function(){
+        $location.path('/projects/'+Id+'/edit')
     };
+
+
 
     $scope.projectEdit={};
     $scope.projectEdit.labels=[];
     $scope.projectEdit.priorities=[];
     $scope.projectEdit.labels=[];
 
-    $scope.editProject=function(id,data){
-        issueService.editProject(id,data).then(function(response){
+
+    /*$scope.editProject=function(Id,data){
+        projectService.editProject(Id,data).then(function(response){
             console.log(response);
             notifyService.showInfo(response.statusText);
             $scope.isHideEdit=false;
@@ -41,7 +70,7 @@ app.controller('ProjectController',function($scope,$q,$location,$routeParams, is
             console.log(err)
             notifyService.showError("Failed to edit", err)
         })
-    };
+    };*/
 
     $scope.returnToDashboard=function(){
         $location.path('/dashboard');

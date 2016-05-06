@@ -1,6 +1,6 @@
 'use strict'
 
-app.controller('DashboardUserController',function($scope,$location, $q,authService,$route, issueService,userService){
+app.controller('DashboardUserController',function($scope,$location, $q,authService,$route,projectService, issueService,userService){
     $scope.addParams={
         'orderBy':'DueDate',
         'pageSize':'10',
@@ -25,7 +25,7 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
 
 
 
-        $scope.myAllProjects=issueService.getMyProjects(50,$scope.cUser).then(function (response) {
+        $scope.myAllProjects=projectService.getMyProjects(50,$scope.cUser).then(function (response) {
                 $scope.myProjects = response.data.Projects;
                 console.log($scope.myProjects);
 
@@ -54,7 +54,7 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
 
 
 
-    $scope.getAllProject=issueService.getAllProject().then(function(response){
+    $scope.getAllProject=projectService.getAllProject().then(function(response){
         $scope.allProjects=response.data;
         console.log($scope.allProjects);
     });

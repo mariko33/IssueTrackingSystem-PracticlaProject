@@ -74,6 +74,24 @@ app.factory('issueService',function($http,$q,$route, baseServiceUrl, authService
             return deferred.promise;
         },
 
+        getProjectIssue:function(id){
+            var deferred=$q.defer();
+            var request={
+                method:'GET',
+                url:baseServiceUrl+'Projects/'+id+'/Issues',
+                headers:authService.getAuthHeaders()
+            };
+            $http(request).then(function(response){
+                deferred.resolve(response);
+                console.log(response)
+            },function(err){
+                console.log(err)
+
+            });
+            return deferred.promise;
+        },
+
+
         getIssuesComments:function(id){
             var deferred=$q.defer();
             var request={
@@ -138,6 +156,31 @@ app.factory('issueService',function($http,$q,$route, baseServiceUrl, authService
 
         },
 
+        addIssue:function(data){
+            var deferred=$q.defer();
+            var request={
+                method:'POST',
+                url:baseServiceUrl+'issues/',
+                data:data,
+                headers:authService.getAuthHeaders()
+            };
+
+            $http(request).then(function(response){
+                deferred.resolve(response);
+                console.log(response);
+                notifyService.showInfo('You are successfuly add issue')
+                $route.reload();
+            },function(err){
+                notifyService.showError(err.data.Message);
+                console.log(err);
+                $route.reload();
+            });
+
+            return deferred.promise;
+
+
+        },
+
         changeStatus:function(id,statusId){
             var deferred=$q.defer();
             var request={
@@ -159,88 +202,6 @@ app.factory('issueService',function($http,$q,$route, baseServiceUrl, authService
             return deferred.promise;
         },
 
-
-        getProject:function(id){
-            var deferred=$q.defer();
-            var request={
-                method:'GET',
-                url:baseServiceUrl+'Projects/'+id,
-                headers:authService.getAuthHeaders()
-            };
-            $http(request).then(function(response){
-                deferred.resolve(response);
-                console.log(response);
-            },function(err){
-                console.log(err);
-            });
-
-            return deferred.promise;
-
-        },
-
-        editProject:function(id,data){
-            var deferred=$q.defer();
-            var request={
-                method:'PUT',
-                url:baseServiceUrl+'Projects/'+id,
-                data:data,
-                headers:authService.getAuthHeaders()
-            };
-
-            $http(request).then(function(response){
-                deferred.resolve(response);
-                console.log(response);
-            },function(err){
-                console.log(err);
-            });
-
-            return deferred.promise;
-
-
-        },
-
-
-        getAllProject: function () {
-            var deferred=$q.defer();
-            var request = {
-                method: 'GET',
-                url: baseServiceUrl + 'projects',
-                headers: authService.getAuthHeaders()
-
-            };
-            //console.log(authService.getAuthHeaders());
-            $http(request).then(function (responce) {
-                deferred.resolve(responce);
-                sessionStorage['allProjects']=JSON.stringify(responce);
-                console.log(responce);
-            },function(err){
-
-            });
-            return deferred.promise;
-        },
-
-
-        getMyProjects: function (currentPageSize,cUser) {
-            var deferred = $q.defer();
-            var request = {
-                method: 'GET',
-                url: baseServiceUrl + 'Projects?filter=Lead.Id="'+cUser+'"'+'&pageSize='+currentPageSize+'&pageNumber=1',
-                headers: authService.getAuthHeaders()
-
-            };
-
-            $http(request).then(function(data){
-                deferred.resolve(data);
-                console.log(data);
-
-            },function(err){
-                console.log(err)
-
-            });
-
-
-            return deferred.promise;
-        },
 
 
 

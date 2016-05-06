@@ -21,9 +21,9 @@
 		<thead>
 		<tr>
 			<!--<td><button href="#" ng-click="hideIssues()">Issues</button></td>-->
-			<td><button  ng-click="viewMyIssues()">View issues</button></td>
+			<!--<td><button  ng-click="viewMyIssues()">View issues</button></td>-->
 			<td><button  ng-show="isAdmin", ng-click="hideProjects()">List All Project</button></td>
-			<td><button ng-click="hideMyProjects()">List My Projects(I am ProjectLeadr)</button></td>
+			<!--<td><button ng-click="hideMyProjects()">List My Projects(I am ProjectLeadr)</button></td>-->
 			<td><button ng-click="viewProject()">View Project</button></td>
 			<td><button  ng-show="isAdmin", ng-click="add()">Add Project</button></td>
 			<td><button  ng-click="changePassword()">Change User Password</button></td>
@@ -36,6 +36,7 @@
 		<!--<table class="table table-striped" ng-show="isHideIssues">-->
 	<div class="container-fluid">
 	<div class="row">
+		<div >
 	<div class="col-md-4">
 	<table class="table table-striped">
 	<thead>
@@ -65,7 +66,7 @@
 	</tbody >
 			</table>
 	</div>
-
+</div>
 
 
 
@@ -96,16 +97,16 @@
 		</tbody >
 		</table>
 	</div>-->
-		<div class="pull-left">
+		<div class="pull-right">
 		<div class="col-md-4">
-			<table class="table table-striped"  ng-show="isHideMyProjects">
+			<table class="table table-striped">
 				<thead>
 				<tr>
 					<td>Project Id</td>
 					<td>Project Name</td>
-					<td>Project Lead</td>
+					<!--<td>Project Lead</td>
 					<td>Description Key</td>
-					<td>Project TransitionSchemeId</td>
+					<td>Project TransitionSchemeId</td>-->
 				</tr>
 				</thead>
 
@@ -117,12 +118,12 @@
 					<!--<td>{{myProject.Lead.Username}}</td>
 					<td>{{myProject.ProjectKey}}</td>
 					<td>{{myProject.TransitionSchemeId}}</td>-->
-					<td><button class="btn btn-success"><a href="#/projects/{{issue.Id}}">View</a></button></td>
+					<td><button class="btn btn-success"><a href="#/projects/{{myProject.Id}}">View</a></button></td>
 				</tr>
 				<tr ng-repeat="issue in issues">
 					<td ng-if="issue.Author.Id!=issue.Assignee.Id">{{issue.Project.Id}}</td>
 					<td ng-if="issue.Author.Id!=issue.Assignee.Id">{{issue.Project.Name}}</td>
-					<td ng-if="issue.Author.Id!=issue.Assignee.Id"><button class="btn btn-success"><a href="#/projects/{{issue.Id}}">View</a></button></td>
+					<td ng-if="issue.Author.Id!=issue.Assignee.Id"><button class="btn btn-success"><a href="#/projects/{{myProject.Id}}">View</a></button></td>
 				</tr>
 
 
