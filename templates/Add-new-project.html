@@ -47,30 +47,30 @@
                     <div class="form-horizontal">
                         <div class="col-md-5">
                             <div class="form-group">
+                                <label for="projectDataName" class="col-md-3">Project Name</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" id="projectDataName" ng-model="projectData.Name" value="{{projectData.Name}}" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label for="projectDataKey" class="col-md-3">Project Key</label>
                                 <div class="col-md-7">
-                                    <input  class="form-control" id="projectDataKey" ng-model="projectData.projectKey" value="{{projectData.projectKey}}" >
+                                    <input type="text" class="form-control" id="projectDataKey" ng-model="projectData.ProjectKey" value="{{projectData.ProjectKey}}" required >
                                 </div>
                             </div>
 
-                            <div class="form-group">
-                                <label for="projectDataName" class="col-md-3">Project Name</label>
-                                <div class="col-md-7">
-                                    <input  class="form-control" id="projectDataName" ng-model="projectData.Name" value="{{projectData.Name}}" >
-                                </div>
-                            </div>
 
                             <div class="form-group">
                                 <label for="projectDataDescription" class="col-md-3">Description</label>
                                 <div class="col-md-7">
-                                    <input class="form-control" id="projectDataDescription" ng-model="projectData.Description" value="{{projectData.Description}}" >
+                                    <input class="form-control" id="projectDataDescription" ng-model="projectData.Description" value="{{projectData.Description}}" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="projectDataLeadId" class="col-md-3 control-label"></label>
+                                <label for="projectDataLeadId" class="col-md-3 control-label">Lead Id</label>
                                 <div class="col-md-7">
-                                    <select class="form-control" id="projectDataLeadId" ng-model="projectData.LeadId" >
+                                    <select class="form-control" id="projectDataLeadId" ng-model="projectData.LeadId" required>
                                         <option ng-repeat="user in allUsers" value="{{user.Id}}">{{user.Username}}</option>
                                     </select>
                                 </div>
@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <label for="projectDataLName" class="col-md-3 control-label">Labels</label>
                                 <div class="col-md-7">
-                                <textarea class="form-control" id="projectDataLName" ng-model="projectData.Arrlabels" ng-list="">
+                                <textarea class="form-control" id="projectDataLName" ng-model="projectData.Arrlabels" ng-list="" required>
 
                                 </textarea>
                                 </div>
@@ -96,7 +96,7 @@
                             <div class="form-group">
                                 <label for="projectDataPriority" class="col-md-3 control-label">Priorities</label>
                                 <div class="col-md-7">
-                                <textarea class="form-control" id="projectDataPriority" ng-model="projectData.ArrPriorities" ng-list="">
+                                <textarea class="form-control" id="projectDataPriority" ng-model="projectData.ArrPriorities" ng-list="" required>
 
                                 </textarea>
                                 </div>

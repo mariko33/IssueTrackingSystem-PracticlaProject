@@ -63,7 +63,7 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
     /*$scope.hideIssues=function(){
         $scope.isHideIssues=!$scope.isHideIssues;
     };*/
-    $scope.isHideProjects=false;
+    /*$scope.isHideProjects=false;
     $scope.hideProjects=function(){
         $scope.isHideProjects=!$scope.isHideProjects;
 
@@ -72,8 +72,8 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
     $scope.isHideMyProjects=false;
     $scope.hideMyProjects=function(){
         $scope.isHideMyProjects=!$scope.isHideMyProjects;
-        /*$scope.myAllProjects();*/
-    }
+        /!*$scope.myAllProjects();*!/
+    }*/
 
     $scope.isAdminStatus=userService.getCurrentUser().then(function(response){
         console.log(response.data.isAdmin);
@@ -106,7 +106,7 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
         });
     };*/
 
-    $scope.add=function(){
+  /*  $scope.add=function(){
         $location.path('/projects/add');
     };
     $scope.addIssue=function(id){
@@ -118,7 +118,7 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
     $scope.editIssue=function(){
         $location.path('/issue/edit');
     };
-
+*/
     $scope.changePassword=function(){
         $location.path('/changePassword');
     };
@@ -128,13 +128,13 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
         $location.path('/')
 
     };
-    $scope.viewMyIssues=function(){
+    /*$scope.viewMyIssues=function(){
         $location.path('/issues');
     };
     $scope.viewProject=function(){
         $location.path('/projects');
     }
-
+*/
 
 
 });

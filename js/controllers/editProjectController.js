@@ -50,7 +50,7 @@ app.controller('EditProjectController',function($scope,$q,$location,$routeParams
 
      },function(err){
      console.log(err)
-     notifyService.showError("Failed to edit", err)
+     notifyService.showError("Failed to edit", err.data.Mesage)
      })
      };
 

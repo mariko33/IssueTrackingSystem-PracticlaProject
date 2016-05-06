@@ -40,7 +40,12 @@ app.controller('AddProjectController', function($scope, $location, projectServic
         },function(err){
             console.log(err)
         })
-    }
+    };
+
+    $scope.returnToDashboard=function(){
+        $location.path('/dashboard');
+    };
+
 
 
 

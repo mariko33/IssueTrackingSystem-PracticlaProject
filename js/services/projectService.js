@@ -57,6 +57,7 @@ app.factory('projectService',function($http,$q,$route, baseServiceUrl, authServi
             $http(request).then(function(response){
                 deferred.resolve(response);
                 console.log(response);
+                notifyService.showInfo('The new project is added');
                 $route.reload();
             },function(err){
                 console.log(err);
