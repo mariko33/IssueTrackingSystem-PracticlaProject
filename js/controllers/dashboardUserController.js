@@ -54,10 +54,10 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
 
 
 
-    $scope.getAllProject=projectService.getAllProject().then(function(response){
+    /*$scope.getAllProject=projectService.getAllProject().then(function(response){
         $scope.allProjects=response.data;
         console.log($scope.allProjects);
-    });
+    });*/
 
     //$scope.isHideIssues=false;
     /*$scope.hideIssues=function(){
@@ -106,10 +106,10 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
         });
     };*/
 
-  /*  $scope.add=function(){
+    $scope.add=function(){
         $location.path('/projects/add');
     };
-    $scope.addIssue=function(id){
+  /*  $scope.addIssue=function(id){
         $scope.currentProjectId=id;
         console.log(id);
         $location.path('/issue/add');
@@ -117,8 +117,7 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
     };
     $scope.editIssue=function(){
         $location.path('/issue/edit');
-    };
-*/
+    };*/
     $scope.changePassword=function(){
         $location.path('/changePassword');
     };
@@ -135,6 +134,10 @@ app.controller('DashboardUserController',function($scope,$location, $q,authServi
         $location.path('/projects');
     }
 */
+
+    $scope.listAllProjects=function(){
+        $location.path('/projects');
+    }
 
 
 });

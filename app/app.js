@@ -68,6 +68,12 @@ app.config(function($routeProvider){
     templateUrl:'templates/edit-project.html',
     controller:'EditProjectController'
   });
+  $routeProvider.when('/projects',{
+    templateUrl:'templates/projects.html',
+    controller:'ProjectsListController'
+
+  })
+
 
 
 })

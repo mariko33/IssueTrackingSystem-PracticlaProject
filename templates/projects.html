@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Project List</title>
+</head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<body>
+
+<div class="jumbotron" style="height: 100%">
+
+    <h1>Dashboard</h1>
+            <div class="pull-right">
+                <div class="col-md-4">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <td>Project Id</td>
+                            <td>Project Name</td>
+                            <td>Project Lead</td>
+                            <td>Description Key</td>
+                            <td>Project TransitionSchemeId</td>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+
+                        <tr ng-repeat="project in allProjects" >
+                            <td>{{project.Id}}</td>
+                            <td>{{project.Name}}</td>
+                            <td>{{project.Lead.Username}}</td>
+                            <td>{{project.ProjectKey}}</td>
+                            <td>{{project.TransitionSchemeId}}</td>
+                            <td><button class="btn btn-success"><a href="#/projects/{{project.Id}}">View</a></button></td>
+                        </tr>
+
+
+
+                        </tbody >
+                    </table>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+</div>
+</body>
+</html>

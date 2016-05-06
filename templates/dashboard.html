@@ -16,16 +16,18 @@
 <div class="jumbotron" style="height: 100%">
 
 	<h1>Dashboard</h1>
+	<button class="btn btn-success" ng-show="isAdmin" ng-click="listAllProjects()">List All Project</button>
+	<button class="btn btn-success" ng-show="isAdmin" ng-click="add()">Add new project</button>
 
 	<table class="table table-striped">
 		<thead>
 		<tr>
 			<!--<td><button href="#" ng-click="hideIssues()">Issues</button></td>-->
 			<!--<td><button  ng-click="viewMyIssues()">View issues</button></td>-->
-			<td><button  ng-show="isAdmin", ng-click="hideProjects()">List All Project</button></td>
+			<!--<td><button  ng-show="isAdmin", ng-click="listAllProjects()">List All Project</button></td>-->
 			<!--<td><button ng-click="hideMyProjects()">List My Projects(I am ProjectLeadr)</button></td>-->
-			<td><button ng-click="viewProject()">View Project</button></td>
-			<td><button  ng-show="isAdmin", ng-click="add()">Add Project</button></td>
+			<!--<td><button ng-click="viewProject()">View Project</button></td>
+			<td><button  ng-show="isAdmin", ng-click="add()">Add Project</button></td>-->
 			<td><button  ng-click="changePassword()">Change User Password</button></td>
 			<td><button  ng-click="logout()">Log out</button></td>
 
