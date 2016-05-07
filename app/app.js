@@ -8,9 +8,11 @@ var app=angular.module('myApp', [
 ])
 
 
+/*
 app.config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/'});
 }]);
+*/
 
 app.constant('baseServiceUrl','http://softuni-issue-tracker.azurewebsites.net/');
 
@@ -72,8 +74,52 @@ app.config(function($routeProvider){
     templateUrl:'templates/projects.html',
     controller:'ProjectsListController'
 
-  })
+  });
+
+  $routeProvider.otherwise(
+      {redirectTo: '/'}
+  );
 
 
 
 })
+
+app.run(function ($rootScope, $location, authService) {
+       $rootScope.$on('$locationChangeStart', function (event) {
+             if($location.path().indexOf("/dashboard") != -1 && !authService.isLoggedIn()) {
+                   $location.path('/');
+               }
+         });
+
+
+  $rootScope.$on('$locationChangeStart', function (event) {
+    if($location.path().indexOf("/projects/") != -1 && !authService.isLoggedIn()) {
+      $location.path('/');
+    }
+  });
+
+  $rootScope.$on('$locationChangeStart', function (event) {
+    if($location.path().indexOf("/issue/") != -1 && !authService.isLoggedIn()) {
+      $location.path('/');
+    }
+  });
+
+  $rootScope.$on('$locationChangeStart', function (event) {
+    if($location.path().indexOf("/issues/") != -1 && !authService.isLoggedIn()) {
+      $location.path('/');
+    }
+  });
+  $rootScope.$on('$locationChangeStart', function (event) {
+    if($location.path().indexOf("/projects") != -1 && !authService.isLoggedIn()) {
+      $location.path('/');
+    }
+  });
+
+
+
+
+})
+
+
+
+

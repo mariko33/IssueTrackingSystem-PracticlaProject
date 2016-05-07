@@ -39,8 +39,8 @@
                 <!--<button class="btn btn-success" ng-click="getProject()">Show project by chosen Id</button>-->
                 <!--<button  class="btn btn-success" ng-click="viewAnotherProject()">Vew Another Project</button>-->
                 <!--<button  class="btn btn-success" ng-click="editProject(project.Id,projectInfo)">Edit Project</button>-->
-                <button  class="btn btn-success" ng-click="edit()">Edit Project</button>
-                    <button  class="btn btn-success" ng-click="addIssue()">Add Issue</button>
+                <button  class="btn btn-success" ng-show="isProjectLead()||isAdmin()" ng-click="edit()">Edit Project</button>
+                    <button  class="btn btn-success" ng-show="isProjectLead()||isAdmin()" ng-click="addIssue()">Add Issue</button>
                     </div>
 
 
@@ -65,47 +65,34 @@
                     </div>
 
                         <div class="form-group">
-                            <label for="projectInfoLeadId" class="col-md-3">Lead Id</label>
+                            <label for="projectInfoLeadId" class="col-md-3">Lead Id {{projectInfo.Lead.Username}}</label>
                             <div class="col-md-7">
                                 <input type="text" class="form-control" id="projectInfoLeadId" ng-model="projectInfo.Lead.Id" value="{{projectInfo.Lead.Id}}"  >
                                 </input>
                             </div>
                         </div>
 
-                <!--<div class="form-group">
-                    <label for="projectInfoId">Project Id</label>
-                    <input class="form-control" id="projectInfoId" ng-model="projectInfo.Id" value="{{projectInfo.Id}}" >
-                </div>-->
 
-                <!--<div class="form-group" ng-repeat="label in projectInfo.Labels">
-                    <label for="projectInfoLables" class="col-md-3 control-label">Label Id</label>
-                    <div class="col-md-7">
-                    <input type="text" class="form-control" id="projectInfoLables"  ng-model="label.Id" value="{{label.Id}}" >
-                        </div>
-                    <label for="projectInfoLName" class="col-md-3 control-label">Label Name</label>
-                    <div class="col-md-7">
-                    <input type="text" class="form-control" id="projectInfoLName"  ng-model="label.Name" value="{{label.Name}}" >
-               </div>ng-repeat="label in projectInfo.Labels"
-                </div>-->
-                        <div class="row">
                         <div class="form-group">
-                            <!--<label for="projectInfoLName" class="col-md-3 control-label">Labels</label>-->
-                            <div class="col-md-3">Labels:</div>
-                            <div id="projectInfoLName" class="col-md-7" ng-model="projectInfo.LabelsStr">
-                                {{projectInfo.LabelsStr}}
-                            </div>
-                        </div>
+                            <label for="projectInfoLables" class="col-md-3 ">Labels:</label>
+                            <div class="col-md-7">
+                                <textarea class="form-control" id="projectInfoLables" ng-model="projectInfo.Arrlabels" ng-list="">
+                                    {{projectInfo.Arrlabels}}
+                                </textarea>
                             </div>
 
-                         <div class="row">
-                        <div class="form-group">
-                            <!--<label for="projectInfoPName" class="col-md-3 control-label">Priorities</label>-->
-                            <div class="col-md-3">Priorities:</div>
-                            <div id="projectInfoPName" class="col-md-7" ng-model="projectInfo.PrioritiesStr">
-                                {{projectInfo.PrioritiesStr}}
-                            </div>
                         </div>
-                             </div>
+
+
+                        <div class="form-group">
+                            <label for="projectInfoPriorities" class="col-md-3 ">Priorities:</label>
+                            <div class="col-md-7">
+                                <textarea class="form-control" id="projectInfoPriorities" ng-model="projectInfo.ArrPriorities" ng-list="">
+                                    {{projectInfo.ArrPriorities}}
+                                </textarea>
+                            </div>
+
+                        </div>
 
 
                 </div>

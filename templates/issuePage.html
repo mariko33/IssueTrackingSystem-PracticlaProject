@@ -53,7 +53,7 @@
         </div>
             </div>
         <div class="form-group">
-            <label for="issueInfoAssignee" class="col-md-3 control-label">Assignee</label>
+            <label for="issueInfoAssignee" class="col-md-3 control-label">Assignee {{issueInfo.Assignee.Username}}</label>
             <div class="col-md-7">
             <input type="text" class="form-control" id="issueInfoAssignee" ng-model="issueInfo.Assignee.Id" value="{{issueInfo.Assignee.Username}}"  >
             </input>
@@ -139,7 +139,7 @@
                         <input type="text" class="form-control" ng-model="comment.Text" value="{{comment.Text}}">
                     </div>
 
-                    <div ng-if="isAssignee()||isProjectLead()">
+                    <div ng-if="isAssignee()||isProjectLead()||isAdmin()">
                         <textarea class="form-control" ng-model="comment.Text"></textarea>
                         <button class="btn btn-success" ng-click="addComments()">Add comment</button>
                     </div>

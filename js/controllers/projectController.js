@@ -1,7 +1,6 @@
 'use strict'
 
-app.controller('ProjectController',function($scope,$q,$location,$routeParams, projectService, issueService,notifyService){
-   // $scope.project={};
+app.controller('ProjectController',function($scope,$q,$location,$routeParams, projectService,userService, issueService,notifyService){
 
     var Id=$routeParams.Id;
     $scope.myProject={};
@@ -9,10 +8,24 @@ app.controller('ProjectController',function($scope,$q,$location,$routeParams, pr
     $scope.isHideProject=false;
     $scope.isHideEdit=false;
 
+    $scope.getCurrentUserId=userService.getCurrentUser().then(function(response){
+        console.log(response.data);
+        $scope.isAdminUser=response.data.isAdmin;
+        $scope.currentUserId=response.data.Id;
+        console.log($scope.currentUserId)
+    },function(){});
+
+
 
     $scope.getProject= projectService.getProject(Id).then(function(response){
             $scope.projectInfo=response.data;
-            /*$scope.isHideProject = true;*/
+        $scope.isProjectLead=function(){
+            return $scope.projectInfo.Lead.Id===$scope.currentUserId;
+        };
+        $scope.isAdmin=function(){
+            return $scope.isAdminUser;
+            console.log($scope.isAdminUser);
+        }
         $scope.projectInfo.Labels=response.data.Labels;
         $scope.projectInfo.LabelsStr='';
         $scope.projectInfo.Arrlabels=[]
@@ -54,11 +67,11 @@ app.controller('ProjectController',function($scope,$q,$location,$routeParams, pr
 
 
 
-    $scope.projectEdit={};
+    /*$scope.projectEdit={};
     $scope.projectEdit.labels=[];
     $scope.projectEdit.priorities=[];
     $scope.projectEdit.labels=[];
-
+*/
 
     /*$scope.editProject=function(Id,data){
         projectService.editProject(Id,data).then(function(response){

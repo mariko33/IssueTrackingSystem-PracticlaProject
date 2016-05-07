@@ -2,6 +2,8 @@
 
 app.controller('EditProjectController',function($scope,$q,$location,$routeParams, projectService, issueService,notifyService,userService){
     var Id=$routeParams.Id;
+
+
     $scope.editInfo={};
     $scope.editInfo.ProjectId=Id;
     Array.prototype.sortBy=function(property){
@@ -21,25 +23,25 @@ app.controller('EditProjectController',function($scope,$q,$location,$routeParams
 
 
     $scope.editProject=function(){
-        $scope.editInfo.Arrlabels=[];
-        $scope.editInfo.ArrPriorities=[]
-        var labels=[]
-        for(var i=0;i<$scope.editInfo.Arrlabels;i++){
-            var temp={'Name':$scope.editInfo.Arrlabels[i]};
-            labels.push(temp);
+        var temp=$scope.editInfo.Arrlabels;
+        var tempP=$scope.editInfo.ArrPriorities;
+        $scope.labels=[]
+        for(var i=0;i<temp.length;i++){
+            var label={'Name':temp[i]};
+            $scope.labels.push(label);
         }
-        var priorities=[];
-        for (var i=0;i<$scope.editInfo.ArrPriorities;i++){
-            var tempP={'Name':$scope.editInfo.ArrPriorities[i]};
-            priorities.push(tempP);
+        $scope.priorities=[];
+        for (var i=0;i<tempP.length;i++){
+            var priority={'Name':tempP[i]};
+            $scope.priorities.push(priority);
         }
 
         var data={
             'Name':$scope.editInfo.Name,
             'Description':$scope.editInfo.Description,
             'ProjectKey':$scope.editInfo.ProjectKey,
-            'Labels':labels,
-            'Priorities':priorities,
+            'Labels':$scope.labels,
+            'Priorities':$scope.priorities,
             'LeadId':$scope.editInfo.ChangeLeadId
         }
 
