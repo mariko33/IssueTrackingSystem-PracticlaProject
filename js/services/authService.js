@@ -1,7 +1,7 @@
 'use strict';
 
 app.factory('authService',
-    function ($http, baseServiceUrl) {
+    function ($http,$q,notifyService, baseServiceUrl) {
 
 
                 return {
@@ -21,14 +21,33 @@ app.factory('authService',
                             console.log(data);
                         }).error(error);
                     },
+                    /*login:function(userData){
+                      var deferred=$q.defer();
+                        var loginData = 'Username=' + userData.email + '&Password=' + userData.password + '&grant_type=password';
+                        var request={
+                            method: 'POST',
+                            url: baseServiceUrl + 'api/Token',
+                            data: loginData,
+                            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+                        };
+                        $http(request).then(function(response){
+                            deferred.resolve(response)
+                            console.log(response);
 
-                    register: function(data, success, error) {
+                        },function(err){
+                            console.log(err)
+                        })
+
+                        return deferred.promise;
+                    },*/
+
+                   /* register: function(data, success, error) {
                         //var deferred=$q.defer();
                         var request = {
                             method: 'POST',
                             url: baseServiceUrl + 'api/Account/Register',
                             data: data
-                            /*headers: { 'Content-Type': 'application/json' }*/
+                            /!*headers: { 'Content-Type': 'application/json' }*!/
 
                         };
                         $http(request).success(function(data) {
@@ -36,12 +55,32 @@ app.factory('authService',
                             success(data);
                             console.log(data);
                         }).error(error)
-                        /*$http(request).then(function(response){
+                        /!*$http(request).then(function(response){
                             deferred.resolve(response.data)
                         },function(error){
 
                         })
-                        return deferred.promise;*/
+                        return deferred.promise;*!/
+                    },*/
+
+                    register:function(data){
+                        var deferred=$q.defer();
+                        var request={
+                            method: 'POST',
+                            url: baseServiceUrl + 'api/Account/Register',
+                            data: data
+                        };
+                        $http(request).then(function (response) {
+                            deferred.resolve(response)
+                            notifyService.showInfo('You are successfully register')
+                            console.log(response)
+                        },function(err){
+                            notifyService.showError(err.data.Message)
+                            console.log(err)
+                        })
+
+                        return deferred.promise;
+
                     },
 
 

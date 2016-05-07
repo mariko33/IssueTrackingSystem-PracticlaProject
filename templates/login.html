@@ -1,3 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<body>
+<div class=jumbotron>
+
+    <h2 style="margin-top: 0">Sign in</h2>
+
+
+    <form>
+        <div >
+            <div class="container-fluid" >
+
+                <div class="row">
+                    <div class="form-horizontal">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <label for="email" class="col-md-3">Email</label>
+                                <div class="col-md-7">
+                                    <input type="text" id="email" ng-model="userData.email" required="required">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password" class="col-md-3">Password</label>
+                                <div class="col-md-7">
+                                    <input type="password" id="password" ng-model="userData.password" required="required" >
+                                </div>
+                            </div>
+
+
+                            <button  class="btn btn-success" ng-click="login(userData)">Login</button>
+                            <button  class="btn btn-success" ng-click="register()">Register</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </form>
+
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<!--
 <div class="box">
     <h2>Login</h2>
     <p>
@@ -11,6 +81,7 @@
 
     <p>
         <button ng-click="login(userData)" class="button">Register</button>
-        <!--<a href="#/register" class="link">Register</a>-->
+        &lt;!&ndash;<a href="#/register" class="link">Register</a>&ndash;&gt;
     <p>
 </div>
+-->

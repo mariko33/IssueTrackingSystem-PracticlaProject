@@ -3,9 +3,31 @@
 
 app.controller('LoginController',
     function ($scope, $rootScope, $location, authService, userService, notifyService) {
+        /*$scope.login=function(userData){
+        authService.login(userData).then(function(response){
+            console.log(response);
+
+            userService.getCurrentUser(function(success){
+                console.log("current User");
+
+            },function(errorr){});
+
+            userService.getAllUsers(function(success){
+                console.log("All Users")
+            },function (errorr){});
+
+            notifyService.showInfo('You are successfully login')
+            $location.path('/dashboard')
+        },function(err){
+            notifyService.showError(err.data.Mesage)
+        })
+
+        }
+*/
+
         $scope.login = function(userData) {
             authService.login(userData,
-                function success() {
+                function success(data) {
                    // notifyService.showInfo("Login Successful");
                    /* if(authService.getCurrentUser().isAdmin)
                         $location.path('/admin/home');
@@ -16,13 +38,13 @@ app.controller('LoginController',
                     userService.getCurrentUser(function(success){
                         console.log("current User");
 
-                    },function(errorr){});
+                    },function(error){});
 
                     userService.getAllUsers(function(success){
                         console.log("All Users")
-                    },function (errorr){});
+                    },function (error){});
 
-                    console.log("login");
+                    console.log(data);
                     $location.path('/dashboard');
 
 
@@ -34,6 +56,11 @@ app.controller('LoginController',
                 });
 
         };
+
+
+        $scope.register=function(){
+            $location.path('/register');
+        }
 
 
     }

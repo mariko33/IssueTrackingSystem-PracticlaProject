@@ -7,10 +7,10 @@ var app=angular.module('myApp', [
 
 ])
 
-/*.
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.otherwise({redirectTo: '/view1'});
-}]);*/
+
+app.config(['$routeProvider', function($routeProvider) {
+  $routeProvider.otherwise({redirectTo: '/'});
+}]);
 
 app.constant('baseServiceUrl','http://softuni-issue-tracker.azurewebsites.net/');
 
@@ -25,7 +25,7 @@ app.config(function($routeProvider){
     controller:'RegisterController'
   });
 
-  $routeProvider.when('/login',{
+  $routeProvider.when('/',{
     templateUrl:'templates/login.html',
     controller:'LoginController'
   });
