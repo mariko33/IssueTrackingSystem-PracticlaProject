@@ -1,21 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Dashboard</title>
-</head>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<body>
-
-<div class="jumbotron" style="height: 100%">
+<div>
 
 	<h1>Dashboard</h1>
+	<div class="pull-right">
+	<table >
+		<tr>
+
+			<td>
+
+				<button class="btn btn-success" ng-click="changePassword()">Change Pass</button>
+
+
+			</td>
+
+
+		</tr>
+		<tr>
+			<td>
+
+				<button class="btn btn-success" ng-click="logout()">log out </button>
+
+
+			</td>
+		</tr>
+	</table>
+		</div>
 	<button class="btn btn-success" ng-show="isAdmin" ng-click="listAllProjects()">List All Project</button>
 	<button class="btn btn-success" ng-show="isAdmin" ng-click="add()">Add new project</button>
 
@@ -28,8 +37,8 @@
 			<!--<td><button ng-click="hideMyProjects()">List My Projects(I am ProjectLeadr)</button></td>-->
 			<!--<td><button ng-click="viewProject()">View Project</button></td>
 			<td><button  ng-show="isAdmin", ng-click="add()">Add Project</button></td>-->
-			<td><button  ng-click="changePassword()">Change User Password</button></td>
-			<td><button  ng-click="logout()">Log out</button></td>
+			<!--<td><button  ng-click="changePassword()">Change User Password</button></td>
+			<td><button  ng-click="logout()">Log out</button></td>-->
 
 		</tr>
 		</thead>
@@ -103,7 +112,7 @@
 		<div class="pull-right">
 
 
-			<div class="panel panel-info">
+			<div class="panel panel-default">
 				<div class="panel-heading">Affiliated Projects</div>
 				<div class="panel-body">
 					<div class="col-md-5">
@@ -185,5 +194,6 @@
 
 
 </div>
+<!--
 </body>
-</html>
+</html>-->
