@@ -33,14 +33,14 @@
                             <div class="form-group">
                                 <label for="password" class="col-md-3">Password</label>
                                 <div class="col-md-7">
-                                    <input type="password" id="password" ng-model="registerData.Password" required="required"/>
+                                    <input type="password" id="password" min-length="6" ng-model="registerData.Password" required="required"/>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="passwordConfirm" class="col-md-3">Confirm Password</label>
                                 <div class="col-md-7">
-                                    <input type="password" id="passwordConfirm" ng-model="registerData.ConfirmPassword" required="required"/>
+                                    <input type="password" id="passwordConfirm" min-length="6" ng-model="registerData.ConfirmPassword" required="required"/>
                                 </div>
                             </div>
 

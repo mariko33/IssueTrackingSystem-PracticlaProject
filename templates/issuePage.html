@@ -14,7 +14,7 @@
 <body>
 <div class=jumbotron>-->
     <button  class="btn btn-success"  ng-click="returnToDashboard()">Dashboard</button>
-    <button  class="btn btn-success" ng-if="isAssignee()||isProjectLead()" ng-click="editIssue()">Edit issues</button>
+    <button  class="btn btn-success" ng-if="isAssignee()||isProjectLead()||isAdmin()" ng-click="editIssue()">Edit issues</button>
     <h2 style="margin-top: 0"> Issue Page</h2>
 
     <form class="container-fluid">
